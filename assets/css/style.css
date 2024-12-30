@@ -934,7 +934,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  animation: letters-loading 4s infinite;
+  animation: letters-loading 5s infinite;
   content: attr(data-text-preloader);
   opacity: 0;
 }
@@ -993,13 +993,6 @@ img {
   .letters-loading:nth-child(9):before {
   animation-delay: 1.7s;
 }
-.handle-preloader
-  .animation-preloader
-  .txt-loading
-  .letters-loading:nth-child(10):before {
-  animation-delay: 1.9s;
-}
-
 /**
 animation: spinner 1s infinite linear;
 
