@@ -3041,6 +3041,7 @@ Brand One
   transition: 0.5s ease;
   transform: scale(1.03);
   opacity: 0.8;
+  width: 98px;
 }
 
 .brand-one__inner ul li a:hover img {
