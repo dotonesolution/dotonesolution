@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #000000;
+  --royal-blue: #0056D2;
+  --sky-blue: #87CEFA;
+  --gray: #B0B0B0;
+}
+
+body {
+  @apply font-sans antialiased text-primary-black;
+}

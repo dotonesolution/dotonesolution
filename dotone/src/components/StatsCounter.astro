@@ -1,0 +1,60 @@
+---
+interface StatItem {
+  value: string | number;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+interface Props {
+  stats: StatItem[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
+  {stats.map((stat) => (
+    <div 
+      class="text-center"
+      data-aos="fade-up"
+      data-aos-delay={stats.indexOf(stat) * 100}
+    >
+      <div class="text-4xl font-bold text-primary-blue mb-2">
+        {stat.prefix}{stat.value}{stat.suffix}
+      </div>
+      <div class="text-neutral-gray">{stat.label}</div>
+    </div>
+  ))}
+</div>
+
+<script>
+// Add animation to count up numbers
+document.addEventListener('DOMContentLoaded', () => {
+  const stats = document.querySelectorAll('[data-aos="fade-up"]');
+  
+  const animate = (el: Element) => {
+    const value = el.querySelector('div:first-child')?.textContent;
+    if (!value) return;
+    
+    const numericValue = parseInt(value.replace(/\D/g, ''));
+    if (isNaN(numericValue)) return;
+    
+    let current = 0;
+    const increment = numericValue / 50;
+    const duration = 1000;
+    const interval = duration / 50;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= numericValue) {
+        current = numericValue;
+        clearInterval(timer);
+      }
+      el.querySelector('div:first-child')!.textContent = Math.round(current).toString();
+    }, interval);
+  };
+  
+  stats.forEach(animate);
+});
+</script>

@@ -1,0 +1,23 @@
+---
+// src/components/Card.astro
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  class?: string;
+}
+
+const { title, description, icon, class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white rounded-lg p-6 shadow-custom transition-all duration-300 hover:shadow-custom-lg ${className}`}
+     data-aos="fade-up">
+  {icon && (
+    <div class="w-12 h-12 mb-4 text-primary-blue">
+      <img src={icon} alt={title} class="w-full h-full object-contain" />
+    </div>
+  )}
+  <h3 class="text-xl font-semibold mb-3 text-primary-black">{title}</h3>
+  <p class="text-neutral-gray">{description}</p>
+  <slot />
+</div>
