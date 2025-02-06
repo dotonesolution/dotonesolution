@@ -1,0 +1,30 @@
+---
+// src/components/HeroSection.astro
+import Button from './Button.astro';
+import PageSections from '../data/PageSections.json';
+const { title, description, backgroundImage } = PageSections.sections[Astro.props.section];
+---
+
+<section 
+  class="relative min-h-[80vh] flex items-center justify-center text-center"
+  style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+>
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  
+  <div class="container relative z-10 px-4">
+    <div class="max-w-3xl mx-auto text-white" data-aos="fade-up">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        {title}
+      </h1>
+      
+      <p class="text-lg mb-8 opacity-90">
+        {description}
+      </p>
+      
+      <div class="flex justify-center space-x-4">
+        <Button href="/about" variant="primary">Learn More</Button>
+        <Button href="/contact" variant="secondary">Contact Us</Button>
+      </div>
+    </div>
+  </div>
+</section>

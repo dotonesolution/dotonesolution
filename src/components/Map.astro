@@ -1,0 +1,11 @@
+---
+const { address } = Astro.props;
+---
+<div class="w-full h-96 bg-white rounded-lg shadow-md overflow-hidden">
+  <iframe
+    title="Location Map"
+    class="w-full h-full border-0"
+    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(address)}`}
+    loading="lazy"
+  />
+</div>

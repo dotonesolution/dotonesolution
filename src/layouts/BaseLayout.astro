@@ -1,5 +1,4 @@
 ---
-// src/layouts/BaseLayout.astro
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -22,28 +21,56 @@ const {
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Dot One Solutions</title>
     <meta name="description" content={description} />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Open Graph for SEO -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/images/og-image.png" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card for SEO -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/assets/images/og-image.png" />
+
+    <!-- AOS Library for Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.css" rel="stylesheet" />
   </head>
   <body class="min-h-screen flex flex-col">
+    <!-- Header -->
     <Header />
+
+    <!-- Main Content -->
     <main class="flex-grow">
+      {title && <h1 class="sr-only">{title}</h1>}
       <slot />
     </main>
+
+    <!-- Footer -->
     <Footer />
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
-      // Initialize AOS
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        mirror: false
+
+    <!-- AOS Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false,
+        });
       });
     </script>
+
+    <!-- Fallback for No JavaScript -->
+    <noscript>
+      <link rel="stylesheet" href="/styles/fallback.css" />
+    </noscript>
   </body>
 </html>

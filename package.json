@@ -1,7 +1,7 @@
 {
-  "name": "dot",
+  "name": "dotone",
   "type": "module",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.0",
+    "@iconify-json/mdi": "^1.2.3",
     "aos": "^2.3.4",
-    "astro": "^5.2.5"
+    "astro": "^5.2.5",
+    "astro-icon": "^1.1.5"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"

@@ -1,0 +1,16 @@
+---
+import { Icon } from 'astro-icon/components';
+import ContactDetails from '../data/ContactDetails.json';
+---
+
+<div class="p-6 bg-white rounded-lg shadow-md" data-aos="fade-up">
+  <h2 class="text-2xl font-bold mb-6 text-black">Contact Information</h2>
+  <div class="space-y-4">
+    {Object.entries(ContactDetails).map(([key, value]) => (
+      <div class="flex items-center gap-3">
+        <Icon name={`mdi:${key}`} class="w-5 h-5 text-royal-blue" />
+        <span class="text-black">{value}</span>
+      </div>
+    ))}
+  </div>
+</div>
