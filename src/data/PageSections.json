@@ -3,23 +3,23 @@
     "contact": {
       "title": "Let’s Build Something Extraordinary Together",
       "description": "Have a project in mind or questions about how we can help? Our team at Dot One Solutions is ready to assist.",
-      "gradientBackground": "linear-gradient(to right, var(--royal-blue), var(--sky-blue))"
+      "gradientBackground": "linear-gradient(135deg, var(--royal-blue), var(--sky-blue))"
     },
     "about": {
       "title": "About Dot One Solutions",
       "description": "At Dot One Solutions, we bridge the gap between technology and business. Our team of experienced tech enthusiasts is dedicated to delivering innovative, customized solutions tailored to your unique needs.",
-      "gradientBackground": "linear-gradient(to left, var(--sky-blue), var(--royal-blue))"
+      "gradientBackground": "linear-gradient(225deg, var(--sky-blue), var(--royal-blue))"
     },
     "home": {
       "title": "We empower businesses with expert tech services",
       "description": "At Dot One Solutions, we understand that leveraging Tech for your business is essential. That’s why we provide scalable and efficient services to help you stay ahead in today’s digital landscape.",
       "backgroundImage": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "gradientOverlay": "linear-gradient(to top, var(--black) 50%, rgba(0, 0, 0, 0.5))"
+      "gradientOverlay": "linear-gradient(to top, var(--black), rgba(0, 0, 0, 0.3))"
     },
     "services": {
       "title": "Our Comprehensive Services",
       "description": "At Dot One Solutions, we offer a wide array of tech-driven services to help your business succeed in a digital-first world. From software development to AI-powered solutions, we tailor our expertise to meet your needs.",
-      "gradientBackground": "linear-gradient(to right, var(--royal-blue), var(--sky-blue))"
+      "gradientBackground": "linear-gradient(90deg, var(--royal-blue), var(--sky-blue))"
     }
   }
 }
