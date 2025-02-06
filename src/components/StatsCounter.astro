@@ -5,11 +5,9 @@ interface StatItem {
   prefix?: string;
   suffix?: string;
 }
-
 interface Props {
   stats: StatItem[];
 }
-
 const { stats } = Astro.props;
 ---
 
@@ -29,32 +27,35 @@ const { stats } = Astro.props;
 </div>
 
 <script>
-// Add animation to count up numbers
 document.addEventListener('DOMContentLoaded', () => {
   const stats = document.querySelectorAll('[data-aos="fade-up"]');
-  
+
   const animate = (el: Element) => {
-    const value = el.querySelector('div:first-child')?.textContent;
-    if (!value) return;
-    
-    const numericValue = parseInt(value.replace(/\D/g, ''));
+    // Extract the original content to preserve prefix and suffix
+    const originalContent = el.querySelector('div:first-child')?.textContent || '';
+    const match = originalContent.match(/^(\D*)(\d+)(\D*)$/); // Match prefix, number, and suffix
+    if (!match) return;
+
+    const [_, prefix, numericValueStr, suffix] = match;
+    const numericValue = parseInt(numericValueStr, 10);
     if (isNaN(numericValue)) return;
-    
+
     let current = 0;
     const increment = numericValue / 50;
     const duration = 1000;
     const interval = duration / 50;
-    
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= numericValue) {
         current = numericValue;
         clearInterval(timer);
       }
-      el.querySelector('div:first-child')!.textContent = Math.round(current).toString();
+      // Reconstruct the content with prefix, animated value, and suffix
+      el.querySelector('div:first-child')!.textContent = `${prefix}${Math.round(current)}${suffix}`;
     }, interval);
   };
-  
+
   stats.forEach(animate);
 });
 </script>

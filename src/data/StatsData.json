@@ -1,0 +1,28 @@
+{
+    "stats": [
+      {
+        "value": 100,
+        "label": "Projects Completed",
+        "prefix": "",
+        "suffix": "+"
+      },
+      {
+        "value": 10,
+        "label": "Active Clients",
+        "prefix": "",
+        "suffix": "+"
+      },
+      {
+        "value": 2024,
+        "label": "Year Founded",
+        "prefix": "",
+        "suffix": ""
+      },
+      {
+        "value": 5,
+        "label": "Economic Sectors",
+        "prefix": "",
+        "suffix": "+"
+      }
+    ]
+  }

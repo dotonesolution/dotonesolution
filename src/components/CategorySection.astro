@@ -1,0 +1,26 @@
+---
+import Card from './Card.astro';
+
+interface Props {
+  name: string;
+  cards: Array<{ title: string; description: string; icon: string; link: string }>;
+}
+const { name, cards } = Astro.props;
+---
+
+<section class="py-16 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-8">{name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {cards.map((card) => (
+        <Card
+          title={card.title}
+          description={card.description}
+          icon={card.icon}
+          link={card.link}
+          class="hover:scale-105 transition-transform shadow-custom hover:shadow-custom-lg"
+        />
+      ))}
+    </div>
+  </div>
+</section>

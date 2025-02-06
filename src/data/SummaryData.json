@@ -1,0 +1,12 @@
+{
+  "heading": "Why Choose Dot One Solutions?",
+  "text": "At Dot One Solutions, we combine innovative technology with strategic consulting to deliver customized solutions that empower your business. Take the first step toward a smarter, more connected future.",
+  "consultationButton": {
+    "buttonText": "Schedule Consultation",
+    "buttonLink": "/contact"
+  },
+  "learnMoreButton": {
+    "buttonText": "Learn More",
+    "buttonLink": "/about"
+  }
+}
