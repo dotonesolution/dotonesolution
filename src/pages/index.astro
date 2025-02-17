@@ -2,12 +2,12 @@
 // Import necessary components and data
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
-import WhatWeOffer from "../data/WhatWeOffer.json";
-import CategorySection from "../components/CategorySection.astro";
+import ServiceGrid from "../components/ServiceGrid.astro";
 import SummarySection from "../components/SummarySection.astro";
 import StatsCounter from "../components/StatsCounter.astro";
 import StatsData from "../data/StatsData.json";
 import SummaryData from "../data/SummaryData.json";
+import WhatWeOffer from "../data/WhatWeOffer.json";
 ---
 
 <!-- Use BaseLayout as the main layout -->
@@ -15,12 +15,10 @@ import SummaryData from "../data/SummaryData.json";
   <!-- Hero Section -->
   <HeroSection section="home" />
 
-  <!-- Render Categories -->
-  {WhatWeOffer.categories.map((category) => (
-    <CategorySection name={category.name} cards={category.cards.map(card => ({ ...card, icon: card.mdiIcon }))} />
-  ))}
+  <!-- Service Grid Section -->
+  <ServiceGrid categories={WhatWeOffer.categories} />
 
-    <StatsCounter stats={StatsData.stats}/>
+  <StatsCounter stats={StatsData.stats}/>
 
   <!-- Summary Section -->
   <SummarySection 

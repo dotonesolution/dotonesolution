@@ -8,8 +8,7 @@
         "Agile methodologies for rapid delivery",
         "Seamless integration with your existing systems"
       ],
-      "icon": "mdi:code-braces",
-      "learnMoreLink": "/services/software-development"
+      "icon": "mdi:code-braces"
     },
     {
       "title": "Digital Literacy Consultation",
@@ -19,8 +18,7 @@
         "Empowering teams to excel in the digital era",
         "Workshops and resources for enhanced digital fluency"
       ],
-      "icon": "mdi:school",
-      "learnMoreLink": "/services/digital-literacy"
+      "icon": "mdi:school"
     },
     {
       "title": "Data Analysis & Visualization",
@@ -30,8 +28,7 @@
         "Predictive analytics to drive smarter decisions",
         "Interactive dashboards and visual tools"
       ],
-      "icon": "mdi:chart-box",
-      "learnMoreLink": "/services/data-analysis"
+      "icon": "mdi:chart-box"
     },
     {
       "title": "Machine Learning & AI Solutions",
@@ -41,8 +38,7 @@
         "Custom AI models designed for your business needs",
         "Cutting-edge tools leveraging the latest frameworks"
       ],
-      "icon": "mdi:robot",
-      "learnMoreLink": "/services/ai-solutions"
+      "icon": "mdi:robot"
     },
     {
       "title": "Design & Prototyping",
@@ -52,8 +48,7 @@
         "Rapid prototyping to bring ideas to life quickly",
         "Collaborative design to align with your vision"
       ],
-      "icon": "mdi:palette",
-      "learnMoreLink": "/services/design"
+      "icon": "mdi:palette"
     }
   ],
   "cta": {

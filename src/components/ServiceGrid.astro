@@ -5,48 +5,77 @@ import Button from './Button.astro';
 interface Service {
     title: string;
     description: string;
-    features: string[];
-    icon: string;
-    learnMoreLink: string;
+    features?: string[];
+    icon?: string;
+}
+
+interface Category {
+    name: string;
+    cards: Array<{
+        title: string;
+        description: string;
+        mdiIcon: string;
+        link?: string;
+        buttonText?: string;
+    }>;
 }
 
 interface Props {
-    services: Array<Service>;
+    services?: Array<Service>;
+    categories?: Array<Category>;
 }
 
-const { services } = Astro.props;
+const { services, categories } = Astro.props;
 ---
-
 <div class="bg-gradient-to-b from-gray-50 to-white py-16">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map(service => (
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <Icon name={service.icon} class="w-8 h-8 text-royal-blue" />
-                        <h3 class="text-xl font-bold ml-3">{service.title}</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">{service.description}</p>
-                    <ul class="space-y-2 mb-6">
-                        {service.features.map(feature => (
-                            <li class="flex items-start">
-                                <Icon name="mdi:check-circle" class="w-5 h-5 text-green-500 mt-1" />
-                                <span class="ml-2 text-gray-700">{feature}</span>
-                            </li>
+        {categories ? (
+            categories.map(category => (
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold text-center mb-8">{category.name}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {category.cards.map(card => (
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6" data-aos="fade-up">
+                                <div class="flex items-center mb-4">
+                                    <Icon name={`mdi:${card.mdiIcon}`} class="w-8 h-8 text-royal-blue" />
+                                    <h3 class="text-xl font-bold ml-3">{card.title}</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">{card.description}</p>
+                                {card.link && card.buttonText && (
+                                    <Button 
+                                        href={card.link} 
+                                        variant="primary"
+                                        class="w-full">
+                                        {card.buttonText}
+                                    </Button>
+                                )}
+                            </div>
                         ))}
-                    </ul>
-                    <Button 
-                        href={service.learnMoreLink} 
-                        variant="primary"
-                        class="w-full">
-                        Learn More
-                    </Button>
+                    </div>
                 </div>
-            ))}
-        </div>
+            ))
+        ) : services && (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {services.map(service => (
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6" data-aos="fade-up">
+                        <div class="flex items-center mb-4">
+                            <Icon name={service.icon} class="w-8 h-8 text-royal-blue" />
+                            <h3 class="text-xl font-bold ml-3">{service.title}</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">{service.description}</p>
+                        {service.features && (
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                {service.features.map(feature => (
+                                    <li>{feature}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                ))}
+            </div>
+        )}
     </div>
 </div>
-
 <style>
     .text-royal-blue {
         color: var(--royal-blue);
