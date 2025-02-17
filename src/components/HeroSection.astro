@@ -116,16 +116,17 @@ const gradientOverlay = 'gradientOverlay' in sectionData ? sectionData.gradientO
   section {
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    overflow: hidden; /* Add overflow control */
   }
 
   section::before {
     content: '';
     position: absolute;
-    inset: -100px;
+    inset: 0; /* Remove negative inset */
     background-image: inherit;
     background-position: center;
     background-size: cover;
-    transform: translateZ(-10px) scale(2);
+    transform: translateZ(-1px) scale(1.2); /* Reduced scale and Z distance */
     filter: blur(2px);
     z-index: -1;
   }
