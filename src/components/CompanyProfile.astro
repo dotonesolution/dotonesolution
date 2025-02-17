@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
   mission: {
     title: string;
@@ -17,41 +19,54 @@ interface Props {
     }>;
   };
 }
-
 const { mission, vision, journey } = Astro.props;
 ---
 
-<section class="py-16">
+<section class="py-16 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
   <div class="max-w-6xl mx-auto px-4">
     <!-- Mission & Vision Grid -->
     <div class="grid md:grid-cols-2 gap-8 mb-16">
-      <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-primary mb-4">{mission.title}</h2>
-        <p class="text-gray-600 leading-relaxed">{mission.description}</p>
+      <div class="group perspective" data-aos="fade-right">
+        <div class="bg-white p-8 rounded-2xl shadow-custom transform-gpu transition-all duration-500 hover:shadow-custom-lg hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-royal-blue/10 to-sky-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          <div class="icon-badge mission-gradient mb-6 relative z-20">
+            <Icon name="mdi:rocket-launch" class="w-6 h-6 text-white" />
+          </div>
+          <h2 class="text-2xl font-bold mb-4 relative z-10 text-gray-900">{mission.title}</h2>
+          <p class="text-gray-700 leading-relaxed relative z-10">{mission.description}</p>
+        </div>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-primary mb-4">{vision.title}</h2>
-        <p class="text-gray-600 leading-relaxed">{vision.description}</p>
+
+      <div class="group perspective" data-aos="fade-left">
+        <div class="bg-white p-8 rounded-2xl shadow-custom transform-gpu transition-all duration-500 hover:shadow-custom-lg hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-sky-blue/10 to-royal-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          <div class="icon-badge vision-gradient mb-6 relative z-20">
+            <Icon name="mdi:telescope" class="w-6 h-6 text-white" />
+          </div>
+          <h2 class="text-2xl font-bold mb-4 relative z-10 text-gray-900">{vision.title}</h2>
+          <p class="text-gray-700 leading-relaxed relative z-10">{vision.description}</p>
+        </div>
       </div>
     </div>
 
     <!-- Journey Timeline Section -->
     <div class="mb-16">
-      <h2 class="text-3xl font-bold text-center mb-12">{journey.title}</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-aos="fade-up">{journey.title}</h2>
       <div class="relative max-w-4xl mx-auto">
         <!-- Timeline Line -->
         <div class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 h-full w-1 timeline-gradient"></div>
         
         <!-- Timeline Items -->
-        <div class="space-y-8 relative">
+        <div class="space-y-12 relative">
           {journey.milestones.map((milestone, index) => (
-            <div class={`flex flex-col md:flex-row md:items-center ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+            <div class={`flex flex-col md:flex-row md:items-center ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`} data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}>
               <div class={`pl-12 md:pl-0 md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
-                <div class="milestone-card bg-white p-6 rounded-lg shadow-lg transition-all duration-300">
-                  <!-- Connecting line for mobile -->
+                <div class="milestone-card bg-white p-6 rounded-2xl shadow-custom transition-all duration-300">
                   <div class="absolute left-[-28px] top-1/2 md:hidden w-7 h-[2px] timeline-gradient"></div>
-                  <span class="text-xl font-bold text-primary block mb-2">{milestone.year}</span>
-                  <h3 class="text-xl font-semibold mb-2">{milestone.title}</h3>
+                  <div class="year-badge inline-block mb-3">
+                    <span class="text-xl font-bold text-white">{milestone.year}</span>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-2 text-gray-900">{milestone.title}</h3>
                   <p class="text-gray-600">{milestone.description}</p>
                 </div>
               </div>
@@ -72,12 +87,42 @@ const { mission, vision, journey } = Astro.props;
 </section>
 
 <style>
-  .text-primary {
-    color: var(--royal-blue);
+  .perspective {
+    perspective: 1000px;
+  }
+
+  .shadow-custom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-custom-lg {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 86, 210, 0.15);
+  }
+
+  .mission-gradient {
+    background: linear-gradient(135deg, var(--royal-blue), color-mix(in srgb, var(--sky-blue) 70%, var(--royal-blue)));
+  }
+
+  .vision-gradient {
+    background: linear-gradient(135deg, var(--sky-blue), color-mix(in srgb, var(--royal-blue) 70%, var(--sky-blue)));
   }
 
   .timeline-gradient {
-    background: linear-gradient(to bottom, var(--royal-blue), var(--sky-blue));
+    background: linear-gradient(to bottom, 
+      var(--royal-blue),
+      color-mix(in srgb, var(--sky-blue) 50%, var(--royal-blue)),
+      var(--sky-blue)
+    );
   }
 
   .journey-point-wrapper {
@@ -122,27 +167,12 @@ const { mission, vision, journey } = Astro.props;
   .milestone-card {
     position: relative;
     overflow: hidden;
-  }
-
-  .milestone-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--royal-blue), var(--sky-blue));
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .milestone-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-
-  .milestone-card:hover::before {
-    opacity: 1;
+    box-shadow: var(--shadow-lg);
   }
 
   @keyframes journey-pulse {
@@ -158,5 +188,21 @@ const { mission, vision, journey } = Astro.props;
       transform: scale(1);
       opacity: 0.2;
     }
+  }
+
+  .text-royal-blue {
+    color: var(--royal-blue);
+  }
+
+  .year-badge {
+    background: linear-gradient(135deg, var(--royal-blue), var(--sky-blue));
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 86, 210, 0.15);
+  }
+
+  .milestone-card:hover .year-badge {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 86, 210, 0.2);
   }
 </style>
