@@ -1,48 +1,117 @@
-# Astro Starter Kit: Basics
+# DotOne Solutions
 
-```sh
-npm create astro@latest -- --template basics
+A modern, responsive business website built with Astro and TailwindCSS. This website features a clean design with smooth animations, dynamic content management, and a contact form integration.
+
+![DotOne Solutions](public/assets/images/logo.png)
+
+## 🚀 Features
+
+- ⚡️ **Lightning Fast Performance** - Built with Astro for optimal speed
+- 🎨 **Modern UI/UX** - Clean and professional design with TailwindCSS
+- 📱 **Fully Responsive** - Looks great on all devices
+- ✨ **Smooth Animations** - Engaging user experience with AOS
+- 📧 **Contact Form** - Integrated with FormSubmit.co
+- 🗺️ **Interactive Map** - Location visualization
+- 📊 **Dynamic Content** - JSON-driven content management
+- 🔍 **SEO Friendly** - Built with best practices
+
+## 🛠️ Tech Stack
+
+- [Astro](https://astro.build) - The web framework for content-driven websites
+- [TailwindCSS](https://tailwindcss.com) - A utility-first CSS framework
+- [AOS](https://michalsnik.github.io/aos/) - Animate On Scroll library
+- [MDI Icons](https://pictogrammers.com/library/mdi/) - Material Design Icons
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 16 or higher
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <https://github.com/dotonesolution/dotonesolution.git>
+cd dotonesolution
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+2. Install dependencies:
+```bash
+pnpm install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+3. Start the development server:
+```bash
+pnpm dev
+```
 
-## 🧞 Commands
+4. Build for production:
+```bash
+pnpm build
+```
 
-All commands are run from the root of the project, from a terminal:
+## 📁 Project Structure
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```
+src/
+├── assets/
+├── components/
+├── data/
+├── layouts/
+├── pages/
+└── styles/
+```
 
-## 👀 Want to learn more?
+## 📄 Pages
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Home** (`/`) - Landing page with hero section and key features
+- **About** (`/about`) - Company information and team
+- **Services** (`/services`) - Detailed service offerings
+- **Contact** (`/contact`) - Contact form and information
+
+## 🔧 Configuration
+
+The project uses various configuration files:
+
+- `astro.config.mjs` - Astro configuration
+- `tailwind.config.cjs` - TailwindCSS configuration
+- `tsconfig.json` - TypeScript configuration
+
+## 📝 Content Management
+
+All website content is managed through JSON files in the `src/data/` directory:
+
+- `CompanyInfo.json` - Company details
+- `ContactDetails.json` - Contact information
+- `ServiceList.json` - Services offered
+- `StatsData.json` - Company statistics
+- `WhatWeOffer.json` - Features and offerings
+
+## 🎨 Styling
+
+The project uses TailwindCSS for styling with custom configurations:
+
+- Custom color schemes
+- Responsive design utilities
+- Custom animations
+- Shadow configurations
+
+## 🚀 Deployment
+
+The site is configured for easy deployment on platforms like Netlify or Vercel. The build command is \`pnpm build\` which generates a static site in the \`dist\` directory.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the Project
+2. Create your Feature Branch (\`git checkout -b feature/AmazingFeature\`)
+3. Commit your Changes (\`git commit -m 'Add some AmazingFeature'\`)
+4. Push to the Branch (\`git push origin feature/AmazingFeature\`)
+5. Open a Pull Request
