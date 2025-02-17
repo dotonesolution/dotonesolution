@@ -6,8 +6,10 @@ const { stats } = Astro.props;
   {stats.map((stat) => (
     <div 
       class="text-center"
-      // data-aos="fade-up"
-      // data-aos-delay={stats.indexOf(stat) * 100}
+      data-stats-counter
+      data-value={stat.value}
+      data-prefix={stat.prefix || ""}
+      data-suffix={stat.suffix || ""}
     >
       <div class="text-4xl font-bold text-primary-blue mb-2">
         {stat.prefix}{stat.value}{stat.suffix}
@@ -18,35 +20,44 @@ const { stats } = Astro.props;
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const stats = document.querySelectorAll('[data-aos="fade-up"]');
+const animate = (el: Element) => {
+  const valueEl = el.querySelector('div:first-child')!;
+  const value = parseInt(el.getAttribute('data-value') || '0', 10);
+  const prefix = el.getAttribute('data-prefix') || '';
+  const suffix = el.getAttribute('data-suffix') || '';
+  
+  if (isNaN(value)) return;
 
-  const animate = (el: Element) => {
-    // Extract the original content to preserve prefix and suffix
-    const originalContent = el.querySelector('div:first-child')?.textContent || '';
-    const match = originalContent.match(/^(\D*)(\d+)(\D*)$/); // Match prefix, number, and suffix
-    if (!match) return;
+  let current = 0;
+  const duration = 2000; // Increased duration to 2 seconds
+  const steps = 100; // More steps for smoother animation
+  const increment = value / steps;
+  const interval = duration / steps;
 
-    const [_, prefix, numericValueStr, suffix] = match;
-    const numericValue = parseInt(numericValueStr, 10);
-    if (isNaN(numericValue)) return;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= value) {
+      current = value;
+      clearInterval(timer);
+    }
+    valueEl.textContent = `${prefix}${Math.round(current)}${suffix}`;
+  }, interval);
+};
 
-    let current = 0;
-    const increment = numericValue / 50;
-    const duration = 1000;
-    const interval = duration / 50;
+// Use Intersection Observer for better mobile support
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animate(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1
+});
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= numericValue) {
-        current = numericValue;
-        clearInterval(timer);
-      }
-      // Reconstruct the content with prefix, animated value, and suffix
-      el.querySelector('div:first-child')!.textContent = `${prefix}${Math.round(current)}${suffix}`;
-    }, interval);
-  };
-
-  stats.forEach(animate);
+// Observe all counter elements
+document.querySelectorAll('[data-stats-counter]').forEach(el => {
+  observer.observe(el);
 });
 </script>
