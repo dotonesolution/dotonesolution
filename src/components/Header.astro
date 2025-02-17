@@ -3,12 +3,16 @@
 import Button from './Button.astro';
 ---
 
-<header class="fixed w-full bg-white/80 backdrop-blur-sm shadow-custom z-50">
+<header class="fixed w-full bg-white shadow-custom z-50">
   <div class="container mx-auto px-4">
     <nav class="flex items-center justify-between h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center">
-        <img src="/assets/images/logo.png" alt="Dot One Solutions" class="h-12 w-auto" />
+      <a href="/" class="flex items-center relative group">
+        <img 
+          src="/assets/images/logo.png" 
+          alt="Dot One Solutions" 
+          class="h-12 w-auto relative z-10" 
+        />
       </a>
 
       <!-- Desktop Navigation -->
@@ -57,3 +61,10 @@ import Button from './Button.astro';
     mobileMenu?.classList.toggle('hidden');
   });
 </script>
+
+<style>
+  .shadow-custom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+                0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+</style>

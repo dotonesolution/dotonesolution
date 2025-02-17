@@ -3,22 +3,28 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-50 py-6 mt-auto">
+<footer class="bg-gray-900 py-6">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
       <!-- Logo -->
-      <a href="/" class="inline-block">
+      <a href="/" class="inline-block hover:opacity-90 transition-opacity">
         <img 
           src="/assets/images/logo.png" 
           alt="Dot One Solutions" 
-          class="h-8 w-auto"
+          class="h-12 w-auto"
         />
       </a>
 
       <!-- Copyright -->
-      <p class="text-neutral-gray text-sm">
+      <p class="text-white text-sm font-medium tracking-wide">
         © {currentYear} Dot One Solutions. All rights reserved.
       </p>
     </div>
   </div>
 </footer>
+
+<style>
+  .bg-gray-900 {
+    background-color: #111827;
+  }
+</style>

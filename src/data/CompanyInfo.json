@@ -1,0 +1,60 @@
+{
+  "mission": {
+    "title": "Our Mission",
+    "description": "To empower businesses and individuals with cutting-edge technology solutions that drive growth and innovation."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "To be a leading force in global digital transformation by leveraging the power of technology."
+  },
+  "journey": {
+    "title": "Our Journey",
+    "milestones": [
+      {
+        "year": "2024 Q1",
+        "title": "Foundation",
+        "description": "Established Dot One Solutions with a vision to transform businesses through innovative technology solutions"
+      },
+      {
+        "year": "2024 Q2",
+        "title": "First Client Success",
+        "description": "Successfully delivered our first major project and established core service offerings"
+      },
+      {
+        "year": "2024 Q4",
+        "title": "Team Expansion",
+        "description": "Growing our talented team and expanding our technical capabilities"
+      },
+      {
+        "year": "2025",
+        "title": "Innovation & Growth",
+        "description": "Launching new service lines and implementing cutting-edge solutions across multiple sectors"
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Dot One Solutions?",
+    "points": [
+      {
+        "title": "Expertise You Can Trust",
+        "description": "Proven success across multiple industries",
+        "icon": "trending-up"
+      },
+      {
+        "title": "Customer-Centric Approach",
+        "description": "We prioritize your goals",
+        "icon": "handshake"
+      },
+      {
+        "title": "Tailored Solutions",
+        "description": "Designed to fit your unique needs",
+        "icon": "cog-sync"
+      },
+      {
+        "title": "Innovative Technologies",
+        "description": "Staying ahead of the curve with AI, machine learning, and more",
+        "icon": "cube-scan"
+      }
+    ]
+  }
+}

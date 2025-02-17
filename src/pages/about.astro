@@ -1,10 +1,23 @@
 ---
 import Hero from "../components/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-
+import CompanyProfile from "../components/CompanyProfile.astro";
+import StatsCounter from "../components/StatsCounter.astro";
+import WhyChooseUs from "../components/WhyChooseUs.astro";
+import CompanyInfo from "../data/CompanyInfo.json";
+import StatsData from "../data/StatsData.json";
 ---
 
 <BaseLayout title="About">
     <Hero section="about" />
+    <CompanyProfile 
+        mission={CompanyInfo.mission}
+        vision={CompanyInfo.vision}
+        journey={CompanyInfo.journey}
+    />
+    <WhyChooseUs 
+        title={CompanyInfo.whyChooseUs.title}
+        points={CompanyInfo.whyChooseUs.points}
+    />
+    <StatsCounter stats={StatsData.stats} />
 </BaseLayout>

@@ -4,11 +4,46 @@
 
 :root {
   --black: #000000;
-  --royal-blue: #0056D2;
-  --sky-blue: #87CEFA;
-  --gray: #B0B0B0;
+  --royal-blue: #0056d2;
+  --sky-blue: #87cefa;
+  --gray: #b0b0b0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   @apply font-sans antialiased text-primary-black;
+  overflow-y: auto;
+}
+
+/* Modern Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100vh;
+  margin: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--royal-blue), var(--sky-blue));
+  border-radius: 100vh;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--sky-blue), var(--royal-blue));
+  border-width: 2px;
+}
+
+/* Firefox Scrollbar Styles */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--royal-blue) transparent;
 }

@@ -1,22 +1,35 @@
 ---
 import PageSections from '../data/PageSections.json';
-const { title, description, gradientBackground } = PageSections.sections[Astro.props.section];
+
+interface Props {
+  section: 'contact' | 'about' | 'home' | 'services';
+}
+
+const { section } = Astro.props;
+const { title, description, gradientBackground } = PageSections.sections[section];
 ---
-
-
 <section 
   class="relative min-h-[60vh] flex items-center justify-center text-center"
   style={`background: ${gradientBackground};`}
 >
   <div class="container relative z-10 px-4">
-    <div class="max-w-2xl mx-auto text-black" data-aos="fade-up">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
         {title}
       </h2>
       
-      <p class="text-lg opacity-90">
+      <p class="text-lg text-gray-600">
         {description}
       </p>
     </div>
   </div>
 </section>
+
+<style>
+  .text-gray-900 {
+    color: #111827;
+  }
+  .text-gray-600 {
+    color: #4B5563;
+  }
+</style>

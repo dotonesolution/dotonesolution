@@ -1,63 +1,81 @@
 ---
+interface StatItem {
+  number: string;
+  label: string;
+  formatted: string;
+}
+
+interface Props {
+  stats: StatItem[];
+}
+
 const { stats } = Astro.props;
 ---
-
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-  {stats.map((stat) => (
-    <div 
-      class="text-center"
-      data-stats-counter
-      data-value={stat.value}
-      data-prefix={stat.prefix || ""}
-      data-suffix={stat.suffix || ""}
-    >
-      <div class="text-4xl font-bold text-primary-blue mb-2">
-        {stat.prefix}{stat.value}{stat.suffix}
+<div class="relative py-16 bg-gradient-to-b from-gray-50/50 to-gray-100/50">
+  <div class="relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center transform hover:scale-105 transition-transform duration-300">
+            <div 
+              class="text-5xl font-bold text-primary-blue mb-3"
+              data-stat-target={stat.number}
+              data-stat-formatted={stat.formatted}
+            >
+              {stat.formatted}
+            </div>
+            <div class="text-gray-600 font-medium text-lg">{stat.label}</div>
+          </div>
+        ))}
       </div>
-      <div class="text-neutral-gray">{stat.label}</div>
     </div>
-  ))}
+  </div>
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(var(--royal-blue) 1px, transparent 1px); background-size: 20px 20px;"></div>
 </div>
 
 <script>
-const animate = (el: Element) => {
-  const valueEl = el.querySelector('div:first-child')!;
-  const value = parseInt(el.getAttribute('data-value') || '0', 10);
-  const prefix = el.getAttribute('data-prefix') || '';
-  const suffix = el.getAttribute('data-suffix') || '';
-  
-  if (isNaN(value)) return;
+  const observedElements = new Set();
 
-  let current = 0;
-  const duration = 2000; // Increased duration to 2 seconds
-  const steps = 100; // More steps for smoother animation
-  const increment = value / steps;
-  const interval = duration / steps;
+  function animateValue(element: Element, end: string, duration: number = 1500) {
+    if (observedElements.has(element)) return;
+    observedElements.add(element);
+    
+    const formatted = element.getAttribute('data-stat-formatted');
+    const endNum = parseInt(end.replace(/\D/g, ''));
+    const start = 0;
+    const increment = endNum / (duration / 16);
+    let current = start;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= endNum) {
+        clearInterval(timer);
+        element.textContent = formatted;
+      } else {
+        element.textContent = Math.floor(current).toString() + (end.includes('+') ? '+' : '');
+      }
+    }, 16);
+  }
 
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= value) {
-      current = value;
-      clearInterval(timer);
-    }
-    valueEl.textContent = `${prefix}${Math.round(current)}${suffix}`;
-  }, interval);
-};
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target.getAttribute('data-stat-target');
+        if (target) {
+          animateValue(entry.target, target);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
 
-// Use Intersection Observer for better mobile support
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animate(entry.target);
-      observer.unobserve(entry.target);
-    }
+  document.querySelectorAll('[data-stat-target]').forEach(el => {
+    observer.observe(el);
   });
-}, {
-  threshold: 0.1
-});
-
-// Observe all counter elements
-document.querySelectorAll('[data-stats-counter]').forEach(el => {
-  observer.observe(el);
-});
 </script>
+
+<style>
+  .text-primary-blue {
+    color: var(--royal-blue);
+  }
+</style>

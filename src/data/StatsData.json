@@ -1,28 +1,24 @@
 {
-    "stats": [
-      {
-        "value": 100,
-        "label": "Projects Completed",
-        "prefix": "",
-        "suffix": "+"
-      },
-      {
-        "value": 10,
-        "label": "Active Clients",
-        "prefix": "",
-        "suffix": "+"
-      },
-      {
-        "value": 2024,
-        "label": "Year Founded",
-        "prefix": "",
-        "suffix": ""
-      },
-      {
-        "value": 5,
-        "label": "Economic Sectors",
-        "prefix": "",
-        "suffix": "+"
-      }
-    ]
-  }
+  "stats": [
+    {
+      "number": "100+",
+      "label": "Projects Completed",
+      "formatted": "100+"
+    },
+    {
+      "number": "10+",
+      "label": "Active clients",
+      "formatted": "10+"
+    },
+    {
+      "number": "2024",
+      "label": "Year Founded",
+      "formatted": "2024"
+    },
+    {
+      "number": "5+",
+      "label": "Economic sectors",
+      "formatted": "5+"
+    }
+  ]
+}

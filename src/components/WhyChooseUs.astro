@@ -1,0 +1,113 @@
+---
+interface Point {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  title: string;
+  points: Point[];
+}
+
+const { title, points } = Astro.props;
+---
+
+<section class="py-16 bg-gradient-to-br from-gray-50 to-sky-50 relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">{title}</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {points.map((point) => (
+        <div class="group relative">
+          <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl relative z-10">
+            <div class="flex flex-col items-center mb-4">
+              <div class="icon-wrapper mb-4 group-hover:scale-110 transition-all duration-300">
+                <div class="icon-inner">
+                  <span class={`mdi mdi-${point.icon}`}></span>
+                </div>
+                <div class="icon-glow"></div>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 text-center transition-colors duration-300">{point.title}</h3>
+            </div>
+            <p class="text-gray-500 text-center text-sm">{point.description}</p>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-r from-royal-blue/5 to-sky-blue/5 rounded-xl transform scale-[0.97] transition-all duration-300 group-hover:scale-100"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-primary {
+    color: var(--royal-blue);
+  }
+  
+  .text-sky-blue {
+    color: var(--sky-blue);
+  }
+
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--sky-blue) 100%);
+    box-shadow: 
+      0 4px 8px rgba(0, 86, 210, 0.15),
+      inset 0 -1px 2px rgba(0,0,0,0.1),
+      inset 0 1px 2px rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .icon-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+    position: relative;
+    z-index: 2;
+  }
+
+  .icon-glow {
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(
+      circle at center,
+      rgba(255,255,255,0.8) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .icon-wrapper:hover .icon-glow {
+    opacity: 0.3;
+  }
+
+  .icon-wrapper .mdi {
+    font-size: 24px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transform: translateZ(10px);
+  }
+
+  .group:hover .icon-wrapper {
+    transform: rotateX(10deg) rotateY(10deg);
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, var(--royal-blue) 1px, transparent 1px),
+                      linear-gradient(to bottom, var(--royal-blue) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+</style>
