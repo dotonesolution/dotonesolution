@@ -1,0 +1,33 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    theme: string;
+}
+
+const { title, description, buttonText, buttonLink, theme } = Astro.props;
+
+const bgClass = theme === 'light' 
+    ? 'bg-gray-50' 
+    : 'bg-gradient-to-r from-blue-50 to-indigo-50';
+---
+
+<section class={`${bgClass} py-16`}>
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-8 text-gray-900">{title}</h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            {description}
+        </p>
+        <Button 
+            href={buttonLink} 
+            variant="primary"
+            class="px-8 py-3"
+        >
+            {buttonText}
+        </Button>
+    </div>
+</section>
