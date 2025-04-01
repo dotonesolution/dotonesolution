@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
 import '../styles/global.css';
 import '../styles/layout.css';
 import '../styles/responsive.css';
@@ -11,11 +12,23 @@ import '@mdi/font/css/materialdesignicons.min.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: string;
+  publishedDate?: string;
+  modifiedDate?: string;
+  author?: string;
+  keywords?: string[];
 }
 
 const { 
-  title, 
-  description = "Dot One Solutions - Empowering businesses with expert tech services"
+  title,
+  description,
+  image,
+  type,
+  publishedDate,
+  modifiedDate,
+  author,
+  keywords
 } = Astro.props;
 ---
 
@@ -23,23 +36,16 @@ const {
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} | Dot One Solutions</title>
-    <meta name="description" content={description} />
-
-    <!-- Open Graph for SEO -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content="/assets/images/og-image.png" />
-    <meta property="og:type" content="website" />
-
-    <!-- Twitter Card for SEO -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/assets/images/og-image.png" />
+    <SEO 
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      publishedDate={publishedDate}
+      modifiedDate={modifiedDate}
+      author={author}
+      keywords={keywords}
+    />
   </head>
   <body class="min-h-screen flex flex-col">
     <!-- Header -->

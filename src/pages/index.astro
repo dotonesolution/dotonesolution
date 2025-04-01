@@ -8,9 +8,36 @@ import CallToAction from "../components/CallToAction.astro";
 import company from "../data/company.json";
 import services from "../data/services.json";
 import pages from "../data/pages.json";
+
+// SEO metadata for the home page
+const seoData = {
+  title: "Home",
+  description: "Dot One Solutions - Your trusted partner for innovative tech services. We specialize in software development, digital transformation, and IT consulting to help businesses thrive in the digital age.",
+  type: "website",
+  keywords: [
+    "tech solutions",
+    "software development company",
+    "IT consulting services",
+    "digital transformation",
+    "web development",
+    "cloud solutions",
+    "business technology",
+    "custom software development",
+    "IT services",
+    "technology consulting"
+  ],
+  publishedDate: "2024-01-01",
+  modifiedDate: new Date().toISOString()
+};
+
+// Extract CTA data and ensure it matches the component interface
+const ctaData = {
+  ...pages.sections.home.cta,
+  theme: pages.sections.home.cta.theme as 'light' | 'dark' | 'gradient' | 'brand'
+};
 ---
 
-<BaseLayout title="Home">
+<BaseLayout {...seoData}>
   <!-- Hero Section -->
   <HeroSection {...pages.sections.home.hero} />
 
@@ -23,7 +50,7 @@ import pages from "../data/pages.json";
   <StatsCounter stats={company.stats}/>
 
   <!-- Call to Action Section -->
-  <CallToAction {...pages.sections.home.cta} />
+  <CallToAction {...ctaData} />
 </BaseLayout>
 
 <style>
@@ -31,11 +58,5 @@ import pages from "../data/pages.json";
   :global(.call-to-action-section) {
     --gradient-start: #1C75BB;
     --gradient-end: #144C7F;
-  }
-  
-  :global(.call-to-action-section .rounded-2xl) {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    box-shadow: 0 10px 25px -5px rgba(28, 117, 187, 0.4), 0 8px 10px -6px rgba(28, 117, 187, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 </style>

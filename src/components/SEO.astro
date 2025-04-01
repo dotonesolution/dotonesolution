@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: string;
+  publishedDate?: string;
+  modifiedDate?: string;
+  author?: string;
+  keywords?: string[];
+}
+
+const {
+  title,
+  description = "Dot One Solutions - Empowering businesses with expert tech services",
+  image = "/assets/images/logo/DotOne_dark.png",
+  canonicalURL = Astro.url.href,
+  type = "website",
+  publishedDate,
+  modifiedDate,
+  author = "Dot One Solutions",
+  keywords = [
+    "tech services",
+    "software development",
+    "digital solutions",
+    "IT consulting",
+    "business technology",
+    "web development",
+    "cloud solutions",
+    "digital transformation"
+  ]
+} = Astro.props;
+
+// Format dates for Schema.org
+const schemaPublishedDate = publishedDate ? new Date(publishedDate).toISOString() : new Date().toISOString();
+const schemaModifiedDate = modifiedDate ? new Date(modifiedDate).toISOString() : schemaPublishedDate;
+
+// Construct Schema.org structured data
+const schema = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "Article" : "WebPage",
+  "name": title,
+  "description": description,
+  "image": new URL(image, Astro.url),
+  "url": canonicalURL,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "datePublished": schemaPublishedDate,
+  "dateModified": schemaModifiedDate,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dot One Solutions",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/assets/images/logo/DotOne_dark.png", Astro.url)
+    }
+  }
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title} | Dot One Solutions</title>
+<meta name="title" content={`${title} | Dot One Solutions`} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="keywords" content={keywords.join(", ")} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={`${title} | Dot One Solutions`} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:site_name" content="Dot One Solutions" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={`${title} | Dot One Solutions`} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#1C75BB" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+<link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#1C75BB" />
