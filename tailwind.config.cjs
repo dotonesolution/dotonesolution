@@ -12,13 +12,17 @@ module.exports = {
       },
       colors: {
         'primary-black': '#000000',
-        'primary-blue': '#0056D2',
-        'sky-blue': '#87CEFA',
-        'neutral-gray': '#B0B0B0',
+        'primary-blue': '#1C75BB',
+        'dark-blue': '#144C7F',
+        'white': '#FFFFFF',
       },
       boxShadow: {
-        'custom': '0 4px 6px -1px rgba(0, 86, 210, 0.1), 0 2px 4px -1px rgba(0, 86, 210, 0.06)',
-        'custom-lg': '0 10px 15px -3px rgba(0, 86, 210, 0.1), 0 4px 6px -2px rgba(0, 86, 210, 0.05)',
+        'custom': '0 4px 10px -1px rgba(28, 117, 187, 0.2), 0 2px 6px -1px rgba(28, 117, 187, 0.1)',
+        'custom-lg': '0 10px 20px -3px rgba(28, 117, 187, 0.2), 0 4px 8px -2px rgba(28, 117, 187, 0.1)',
+        'futuristic': '0 5px 15px rgba(28, 117, 187, 0.3), 0 0 0 1px rgba(28, 117, 187, 0.1)',
+      },
+      backdropBlur: {
+        'xs': '2px',
       },
     },
   },

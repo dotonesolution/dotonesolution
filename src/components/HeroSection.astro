@@ -1,144 +1,195 @@
 ---
 // src/components/HeroSection.astro
-import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 import PageSections from '../data/PageSections.json';
+
+interface SectionData {
+  title: string;
+  subtitle?: string;
+  description: string;
+  gradientBackground?: string;
+  backgroundImage?: string;
+  gradientOverlay?: string;
+  primaryCta?: {
+    text: string;
+    link: string;
+  };
+  secondaryCta?: {
+    text: string;
+    link: string;
+  };
+}
 
 interface Props {
   section: keyof typeof PageSections.sections;
   showScrollIndicator?: boolean;
+  variant?: 'default' | 'gradient' | 'dark';
 }
 
-const { section, showScrollIndicator = true } = Astro.props;
-const sectionData = PageSections.sections[section];
+const { section, showScrollIndicator = true, variant = 'default' } = Astro.props;
+const sectionData = PageSections.sections[section] as SectionData;
 
 const backgroundImage = 'backgroundImage' in sectionData ? sectionData.backgroundImage : '';
-const gradientOverlay = 'gradientOverlay' in sectionData ? sectionData.gradientOverlay : '';
+const useGradient = variant === 'gradient';
+const useDark = variant === 'dark';
 ---
 
 <section 
-  class="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center bg-fixed"
-  style={`background-image: url('${backgroundImage}');`}
+  class={`relative min-h-[60vh] flex items-center justify-center text-center overflow-hidden pt-16 ${useDark ? 'bg-primary-black' : section === 'home' ? 'bg-gray-800' : ''}`}
+  id="hero-section"
 >
-  <!-- Overlay with modern gradient -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 backdrop-blur-sm" style={gradientOverlay ? `background: ${gradientOverlay};` : ''}></div>
+  <!-- Background elements based on variant or section -->
+  {section === 'home' && (
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-primary-black z-0">
+      <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <!-- Enhanced overlay for better text readability -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80"></div>
+    </div>
+  )}
   
-  <!-- Animated particles background -->
-  <div class="absolute inset-0 z-0">
-    <div class="particles"></div>
+  <!-- Animated floating shapes -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="floating-shape absolute -top-24 -left-24 w-64 h-64 bg-primary-blue/20 rounded-full blur-3xl"></div>
+    <div class="floating-shape-reverse absolute top-1/2 -right-48 w-64 h-64 bg-dark-blue/20 rounded-full blur-3xl"></div>
+    <div class="floating-shape-delayed absolute bottom-0 left-1/3 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+  </div>
+  
+  <!-- Futuristic elements -->
+  <div class="absolute inset-0 z-1 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full pulse-animation"></div>
+    <div class="absolute top-1/3 right-1/3 w-1 h-1 bg-white rounded-full pulse-animation" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-1/4 left-1/2 w-1 h-1 bg-white rounded-full pulse-animation" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 right-1/4 w-1 h-1 bg-white rounded-full pulse-animation" style="animation-delay: 0.5s;"></div>
   </div>
 
-  <div class="container relative z-10 px-4">
-    <div class="max-w-4xl mx-auto text-white" data-aos="fade-up" data-aos-duration="1000">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-        <span class="bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
-          {sectionData.title}
-        </span>
+  <div class="container relative z-10 px-4 py-10">
+    <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+      {sectionData.subtitle && (
+        <div class="inline-block px-6 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base tracking-wide transform hover:scale-105 transition-transform">
+          {sectionData.subtitle}
+        </div>
+      )}
+      
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
+        {sectionData.title}
       </h1>
       
-      <p class="text-xl md:text-2xl mb-12 text-gray-200 leading-relaxed max-w-3xl mx-auto">
+      <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto text-gray-300">
         {sectionData.description}
       </p>
       
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8">
-        {'primaryCta' in sectionData && (
-          <Button 
-            href={sectionData.primaryCta.link} 
-            variant="primary"
-            class="group text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform duration-300"
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+        {sectionData.primaryCta && (
+          <a 
+            href={sectionData.primaryCta?.link} 
+            class="group py-4 px-8 bg-primary-blue text-white rounded-full font-medium transition-all duration-300 hover:bg-dark-blue shadow-lg hover:shadow-xl hover:shadow-primary-blue/20 transform hover:-translate-y-1 flex items-center justify-center"
           >
-            {sectionData.primaryCta.text}
-            <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" />
-          </Button>
+            {sectionData.primaryCta?.text}
+            <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
+          </a>
         )}
         
-        {'secondaryCta' in sectionData && sectionData.secondaryCta && (
-          <Button 
-            href={sectionData.secondaryCta.link} 
-            variant="secondary"
-            class="text-lg px-8 py-4 rounded-full border-2 hover:bg-white/10 transition-colors duration-300"
+        {sectionData.secondaryCta && (
+          <a 
+            href={sectionData.secondaryCta?.link} 
+            class="group py-4 px-8 border-2 border-white/20 bg-white/10 backdrop-blur-sm text-white rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/30 flex items-center justify-center transform hover:-translate-y-1"
           >
-            {sectionData.secondaryCta.text}
-          </Button>
+            {sectionData.secondaryCta?.text}
+            <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
+          </a>
         )}
       </div>
     </div>
   </div>
 
   {showScrollIndicator && (
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <Icon name="mdi:chevron-down" class="w-8 h-8 text-white/80" />
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer" id="scroll-indicator">
+      <div class="w-8 h-12 rounded-full border-2 border-white/30 flex justify-center items-center">
+        <div class="w-1 h-3 bg-white/80 rounded-full animate-scroll-down"></div>
+      </div>
     </div>
   )}
 </section>
 
 <style>
-  .particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: transparent;
-    pointer-events: none;
+  .floating-shape {
+    animation: float 20s infinite;
   }
 
-  .particles::before,
-  .particles::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  .floating-shape-reverse {
+    animation: floatReverse 25s infinite;
+  }
+
+  .floating-shape-delayed {
+    animation: float 18s infinite;
+    animation-delay: -10s;
+  }
+
+  .bg-grid-pattern {
     background-image: 
-      radial-gradient(circle at center, white 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: particleAnimation 60s linear infinite;
-    opacity: 0.2;
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .particles::after {
-    background-size: 75px 75px;
-    animation-duration: 90s;
-    animation-delay: -30s;
+  .pulse-animation {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  @keyframes particleAnimation {
-    from {
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(5%, 5%) rotate(5deg);
+    }
+    50% {
+      transform: translate(0, 10%) rotate(0deg);
+    }
+    75% {
+      transform: translate(-5%, 5%) rotate(-5deg);
+    }
+  }
+
+  @keyframes floatReverse {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-5%, 5%) rotate(-5deg);
+    }
+    50% {
+      transform: translate(0, 10%) rotate(0deg);
+    }
+    75% {
+      transform: translate(5%, 5%) rotate(5deg);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(8);
+    }
+    80% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scroll-down {
+    0%, 100% {
       transform: translateY(0);
     }
-    to {
-      transform: translateY(-100%);
+    50% {
+      transform: translateY(4px);
     }
   }
 
-  /* Image parallax effect */
-  section {
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    overflow: hidden; /* Add overflow control */
-  }
-
-  section::before {
-    content: '';
-    position: absolute;
-    inset: 0; /* Remove negative inset */
-    background-image: inherit;
-    background-position: center;
-    background-size: cover;
-    transform: translateZ(-1px) scale(1.2); /* Reduced scale and Z distance */
-    filter: blur(2px);
-    z-index: -1;
+  .animate-scroll-down {
+    animation: scroll-down 2s ease-in-out infinite;
   }
 </style>
-
-<script>
-  // Parallax effect on scroll
-  const section = document.querySelector('section');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    if (section) {
-      section.style.backgroundPositionY = `${scrolled * 0.5}px`;
-    }
-  });
-</script>

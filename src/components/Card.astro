@@ -2,21 +2,54 @@
 interface Props {
   title: string;
   description: string;
-  mdiIcon: string;
+  mdiIcon?: string; // Make icon optional
+  icon?: string; // Support for custom icon names
   link: string;
   class?: string;
+  variant?: 'default' | 'glass' | 'dark';
+  hoverEffect?: boolean;
 }
-const { title, description, mdiIcon, link, class: className = '' } = Astro.props;
+
+const { 
+  title, 
+  description, 
+  mdiIcon, 
+  icon,
+  link, 
+  class: className = '',
+  variant = 'default',
+  hoverEffect = true
+} = Astro.props;
+
+const iconName = icon || (mdiIcon ? `mdi:${mdiIcon}` : '');
+
+const variants = {
+  default: "bg-white border border-gray-100",
+  glass: "glass backdrop-blur-md bg-white/80",
+  dark: "bg-primary-black text-white"
+};
+
+const baseStyles = "rounded-lg p-6 transition-all duration-300";
+const hoverStyles = hoverEffect ? "hover:shadow-futuristic hover:-translate-y-1" : "";
 ---
 
-<a href={link} class={`bg-white rounded-lg p-6 shadow-custom transition-all duration-300 ${className}`} data-aos="fade-up">
+<a href={link} class={`${baseStyles} ${variants[variant]} ${hoverStyles} ${className}`} data-aos="fade-up">
   <div class="flex flex-col items-center text-center">
-    {mdiIcon && (
-      <span class="w-12 h-12 mb-4 text-primary-blue">
-        <i class={`mdi:${mdiIcon}`}></i>
+    {iconName && (
+      <span class={`w-14 h-14 mb-5 rounded-full flex items-center justify-center ${variant === 'dark' ? 'bg-dark-blue/20 text-primary-blue' : 'bg-primary-blue/10 text-primary-blue'}`}>
+        <i class={iconName + " text-2xl"}></i>
       </span>
     )}
-    <h3 class="text-xl font-semibold mb-3 text-primary-black">{title}</h3>
-    <p class="text-neutral-gray">{description}</p>
+    
+    <h3 class={`text-xl font-semibold mb-3 ${variant === 'dark' ? 'text-white' : 'text-primary-black'}`}>{title}</h3>
+    
+    <p class={variant === 'dark' ? 'text-gray-300' : 'text-gray-600'}>{description}</p>
+    
+    <div class="mt-4 inline-flex items-center font-medium text-primary-blue">
+      <span class="mr-1">Learn More</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
   </div>
 </a>

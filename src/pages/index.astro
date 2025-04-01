@@ -2,30 +2,50 @@
 // Import necessary components and data
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
+import AboutSection from "../components/AboutSection.astro";
 import ServiceGrid from "../components/ServiceGrid.astro";
-import SummarySection from "../components/SummarySection.astro";
 import StatsCounter from "../components/StatsCounter.astro";
+import CallToAction from "../components/CallToAction.astro";
 import StatsData from "../data/StatsData.json";
 import SummaryData from "../data/SummaryData.json";
 import WhatWeOffer from "../data/WhatWeOffer.json";
 ---
 
-<!-- Use BaseLayout as the main layout -->
 <BaseLayout title="Home">
   <!-- Hero Section -->
   <HeroSection section="home" />
+
+  <!-- About Section -->
+  <AboutSection />
 
   <!-- Service Grid Section -->
   <ServiceGrid categories={WhatWeOffer.categories} />
 
   <StatsCounter stats={StatsData.stats}/>
 
-  <!-- Summary Section -->
-  <SummarySection 
-    heading={SummaryData.heading} 
-    text={SummaryData.text} 
-    consultationButton={SummaryData.consultationButton} 
-    learnMoreButton={SummaryData.learnMoreButton} 
+  <!-- Call to Action Section -->
+  <CallToAction 
+    title={SummaryData.heading}
+    description={SummaryData.text}
+    buttonText={SummaryData.consultationButton.buttonText}
+    buttonLink={SummaryData.consultationButton.buttonLink}
+    secondaryButtonText={SummaryData.learnMoreButton.buttonText}
+    secondaryButtonLink={SummaryData.learnMoreButton.buttonLink}
+    theme="brand"
   />
 
 </BaseLayout>
+
+<style>
+  /* Enhanced vibrant styles for the CTA section */
+  :global(.call-to-action-section) {
+    --gradient-start: #1C75BB;
+    --gradient-end: #144C7F;
+  }
+  
+  :global(.call-to-action-section .rounded-2xl) {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    box-shadow: 0 10px 25px -5px rgba(28, 117, 187, 0.4), 0 8px 10px -6px rgba(28, 117, 187, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>

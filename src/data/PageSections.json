@@ -10,7 +10,7 @@
       }
     },
     "about": {
-      "title": "About Dot One Solutions",
+      "title": "Empowering Your Digital Future",
       "description": "At Dot One Solutions, we bridge the gap between technology and business. Our team of experienced tech enthusiasts is dedicated to delivering innovative, customized solutions tailored to your unique needs.",
       "gradientBackground": "linear-gradient(225deg, var(--gray), color-mix(in srgb, var(--royal-blue) 40%, transparent))",
       "primaryCta": {
@@ -23,22 +23,23 @@
       }
     },
     "home": {
-      "title": "We empower businesses with expert tech services",
-      "description": "At Dot One Solutions, we understand that leveraging Tech for your business is essential. That's why we provide scalable and efficient services to help you stay ahead in today's digital landscape.",
+      "title": "We empower businesses with Expert Tech Services",
+      "description": "Partner with Dot One Solutions to unlock your business potential. We don't just provide tech services – we deliver tailored digital solutions that drive growth, streamline operations, and keep you ahead of the competition.",
+      "gradientBackground": "linear-gradient(45deg, #1a2b47, #3a547e)",
       "backgroundImage": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "gradientOverlay": "linear-gradient(to top, var(--black), transparent)",
       "primaryCta": {
-        "text": "Explore Services",
+        "text": "Transform Your Business",
         "link": "/services"
       },
       "secondaryCta": {
-        "text": "Contact Us",
+        "text": "Let's Talk",
         "link": "/contact"
       }
     },
     "services": {
-      "title": "Our Comprehensive Services",
-      "description": "At Dot One Solutions, we offer a wide array of tech-driven services to help your business succeed in a digital-first world. From software development to AI-powered solutions, we tailor our expertise to meet your needs.",
+      "title": "Solutions Crafted Just for You",
+      "description": "Your business is unique, and so are your challenges. Whether you need cutting-edge software development or want to harness the power of AI, we're here to listen, understand, and create solutions that perfectly align with your vision. Let's work together to bring your ideas to life.",
       "gradientBackground": "linear-gradient(90deg, var(--sky-blue), color-mix(in srgb, var(--royal-blue) 40%, transparent))",
       "primaryCta": {
         "text": "View All Services",

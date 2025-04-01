@@ -7,49 +7,161 @@ interface Props {
   text: string;
   consultationButton: { buttonText: string; buttonLink: string };
   learnMoreButton: { buttonText: string; buttonLink: string };
+  theme?: 'dark' | 'gradient';
 }
-const { heading, text, consultationButton, learnMoreButton } = Astro.props;
+const { heading, text, consultationButton, learnMoreButton, theme = 'dark' } = Astro.props;
 ---
-<section class="relative py-24 overflow-hidden bg-gradient-to-br from-primary-black via-gray-900 to-primary-black">
-  <!-- Decorative elements -->
-  <div class="absolute inset-0 grid grid-cols-2 -skew-y-12 opacity-20">
-    {Array.from({ length: 20 }).map(() => (
-      <div class="border-t border-white/10"></div>
-    ))}
-  </div>
+<section class={`relative py-24 overflow-hidden ${theme === 'gradient' ? 'bg-gradient-to-br from-primary-blue to-dark-blue' : 'bg-primary-black'}`}>
+  <!-- Background elements -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+  
+  <!-- Decorative blobs -->
+  <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-primary-blue/20 rounded-full blur-3xl"></div>
+  <div class="absolute -top-48 -right-48 w-96 h-96 bg-dark-blue/20 rounded-full blur-3xl"></div>
+  
+  <!-- Futuristic line elements -->
+  <div class="absolute inset-y-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-primary-blue/30 to-transparent"></div>
+  <div class="absolute inset-y-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-primary-blue/30 to-transparent"></div>
+  <div class="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-primary-blue/30 to-transparent"></div>
+  <div class="absolute inset-x-0 bottom-0 h-px w-full bg-gradient-to-r from-transparent via-primary-blue/30 to-transparent"></div>
 
-  <div class="relative max-w-4xl mx-auto px-4">
+  <div class="relative max-w-4xl mx-auto px-4 z-10">
     <div class="text-center" data-aos="fade-up">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-        {heading}
+      <div class="inline-block px-6 py-2.5 mb-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-sm">
+        Discover More
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
+        <span class="gradient-text-animation">
+          {heading}
+        </span>
       </h2>
-      <p class="text-lg text-gray-300 leading-relaxed mb-8">
+      
+      <p class="text-lg text-white/90 leading-relaxed mb-10 max-w-3xl mx-auto">
         {text}
       </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
+      
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
         <Button 
           href={consultationButton.buttonLink} 
-          variant="primary"
-          class="group text-lg px-8 py-4 rounded-lg transform hover:scale-105 transition-all duration-300"
+          variant={theme === 'gradient' ? 'glass' : 'primary'}
+          size="lg"
+          class="group"
         >
-          {consultationButton.buttonText}
-          <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" />
+          <span class="flex items-center">
+            {consultationButton.buttonText}
+            <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+          </span>
         </Button>
+        
         <Button 
           href={learnMoreButton.buttonLink} 
-          variant="secondary"
-          class="text-lg px-8 py-4 rounded-lg border-2 hover:bg-white/10 transition-colors duration-300"
+          variant={theme === 'gradient' ? 'secondary' : 'outline'}
+          size="lg"
         >
           {learnMoreButton.buttonText}
         </Button>
       </div>
     </div>
   </div>
+  
+  <!-- Animated floating particles -->
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 </section>
 
 <style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .gradient-text-animation {
+    background: linear-gradient(to right, #FFFFFF, #1C75BB, #FFFFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: textGradient 8s linear infinite;
+  }
+  
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation-duration: var(--duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: floatParticle;
+  }
+  
+  .particle:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    --duration: 15s;
+  }
+  
+  .particle:nth-child(2) {
+    top: 40%;
+    left: 80%;
+    --duration: 20s;
+  }
+  
+  .particle:nth-child(3) {
+    top: 60%;
+    left: 30%;
+    --duration: 18s;
+  }
+  
+  .particle:nth-child(4) {
+    top: 15%;
+    left: 70%;
+    --duration: 22s;
+  }
+  
+  .particle:nth-child(5) {
+    top: 75%;
+    left: 20%;
+    --duration: 16s;
+  }
+  
+  .particle:nth-child(6) {
+    top: 85%;
+    left: 60%;
+    --duration: 19s;
+  }
+  
+  @keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes floatParticle {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.3;
+    }
+    80% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(100px);
+      opacity: 0;
+    }
   }
 </style>

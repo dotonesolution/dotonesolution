@@ -1,90 +1,132 @@
 ---
 // src/components/ContactForm.astro
 import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
-<div class="w-full p-6 bg-white rounded-lg shadow-custom" data-aos="fade-up">
-  <h2 class="text-2xl font-bold mb-6 text-black">Send Us a Message</h2>
-  <form 
-    action="https://formsubmit.co/rahagi7833@shouxs.com" 
-    method="POST"
-    id="contactForm" 
-    class="space-y-6"
-  >
-    <!-- Customization options for FormSubmit -->
-    <input type="hidden" name="_subject" value="New Contact Form Submission">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="true">
-    <input type="hidden" name="_next" value="https://dotonedev.netlify.app/thank-you">
-
-    <!-- Name Input -->
-    <div>
-      <label for="name" class="block text-sm font-medium text-primary-black mb-2">
-        Full Name
-      </label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        class="w-full px-4 py-2 border border-neutral-gray rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
-        placeholder="John Doe"
-      />
+<div class="glass border border-white/20 rounded-xl p-8 shadow-futuristic relative overflow-hidden" data-aos="fade-up">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-primary-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-dark-blue/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+  
+  <div class="relative z-10">
+    <div class="flex items-center mb-8">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-blue/10 mr-4">
+        <Icon name="mdi:message-outline" class="w-5 h-5 text-primary-blue" />
+      </div>
+      <h2 class="text-2xl font-bold text-primary-black">Get In Touch</h2>
     </div>
+    
+    <form 
+      action="https://formsubmit.co/rahagi7833@shouxs.com" 
+      method="POST"
+      id="contactForm" 
+      class="space-y-6"
+    >
+      <!-- Customization options for FormSubmit -->
+      <input type="hidden" name="_subject" value="New Contact Form Submission">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://dotonedev.netlify.app/thank-you">
 
-    <!-- Email Input -->
-    <div>
-      <label for="email" class="block text-sm font-medium text-primary-black mb-2">
-        Email Address
-      </label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        class="w-full px-4 py-2 border border-neutral-gray rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
-        placeholder="john@example.com"
-      />
-    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Name Input -->
+        <div class="form-group">
+          <label for="name" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+            <Icon name="mdi:account" class="w-4 h-4 mr-2 text-primary-blue" />
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
+            placeholder="John Doe"
+          />
+        </div>
 
-    <!-- Subject Input -->
-    <div>
-      <label for="subject" class="block text-sm font-medium text-primary-black mb-2">
-        Subject
-      </label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        required
-        class="w-full px-4 py-2 border border-neutral-gray rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
-        placeholder="How can we help?"
-      />
-    </div>
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+            <Icon name="mdi:email-outline" class="w-4 h-4 mr-2 text-primary-blue" />
+            Email Address
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
+            placeholder="john@example.com"
+          />
+        </div>
+      </div>
 
-    <!-- Message Input -->
-    <div>
-      <label for="message" class="block text-sm font-medium text-primary-black mb-2">
-        Message
-      </label>
-      <textarea
-        id="message"
-        name="message"
-        required
-        rows="4"
-        class="w-full px-4 py-2 border border-neutral-gray rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all resize-none"
-        placeholder="Your message here..."
-      ></textarea>
-    </div>
+      <!-- Subject Input -->
+      <div class="form-group">
+        <label for="subject" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+          <Icon name="mdi:text-box-outline" class="w-4 h-4 mr-2 text-primary-blue" />
+          Subject
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          required
+          class="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
+          placeholder="How can we help?"
+        />
+      </div>
 
-    <!-- Submit Button -->
-    <div>
-      <Button type="submit" variant="primary" class="w-full">
-        Send Message
-      </Button>
-    </div>
-  </form>
+      <!-- Message Input -->
+      <div class="form-group">
+        <label for="message" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+          <Icon name="mdi:message-text-outline" class="w-4 h-4 mr-2 text-primary-blue" />
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="4"
+          class="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all resize-none"
+          placeholder="Your message here..."
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <Button type="submit" variant="primary" class="w-full group relative overflow-hidden">
+          <span class="relative z-10 flex items-center justify-center">
+            Send Message
+            <Icon name="mdi:send" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+          </span>
+        </Button>
+      </div>
+    </form>
+  </div>
 </div>
+
+<style>
+  .form-group {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group:focus-within label {
+    color: var(--primary-blue);
+  }
+  
+  input, textarea {
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -10px rgba(28, 117, 187, 0.3);
+  }
+</style>
 
 <script>
   const form = document.getElementById('contactForm') as HTMLFormElement;
@@ -92,7 +134,10 @@ import Button from './Button.astro';
     const button = form.querySelector('button');
     if (button) {
       button.disabled = true;
-      button.textContent = 'Sending...';
+      const buttonText = button.querySelector('span');
+      if (buttonText) {
+        buttonText.innerHTML = '<span class="flex items-center">Sending <svg class="animate-spin ml-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
+      }
     }
     
     // The form will be handled by FormSubmit.co
@@ -100,7 +145,10 @@ import Button from './Button.astro';
     setTimeout(() => {
       if (button) {
         button.disabled = false;
-        button.textContent = 'Send Message';
+        const buttonText = button.querySelector('span');
+        if (buttonText) {
+          buttonText.innerHTML = 'Send Message <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg>';
+        }
       }
     }, 2000);
   });

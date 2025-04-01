@@ -1,9 +1,10 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'glass';
   class?: string;
   type?: 'button' | 'submit';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const {
@@ -11,18 +12,25 @@ const {
   variant = 'primary',
   class: className = '',
   type = 'button',
+  size = 'md',
 } = Astro.props;
 
-const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-200 transform hover:scale-105";
-
-const variants = {
-  primary: "bg-primary-blue text-white hover:bg-sky-blue shadow-custom",
-  secondary: "bg-sky-blue text-primary-black hover:bg-primary-blue hover:text-white shadow-custom",
-  outline: "border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white"
+const sizeClasses = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-4 text-lg"
 };
 
-const styles = `${baseStyles} ${variants[variant]} ${className}`;
+const baseStyles = "inline-flex items-center justify-center rounded-md font-medium transition-all duration-300 transform hover:translate-y-[-2px] focus:outline-none focus:ring-2 focus:ring-primary-blue focus:ring-opacity-50";
 
+const variants = {
+  primary: "bg-primary-blue text-white hover:shadow-lg hover:shadow-primary-blue/30",
+  secondary: "bg-dark-blue text-white hover:shadow-lg hover:shadow-dark-blue/30",
+  outline: "border-2 border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white",
+  glass: "glass text-primary-black border border-white/20 hover:border-primary-blue/50 shadow-custom"
+};
+
+const styles = `${baseStyles} ${variants[variant]} ${sizeClasses[size]} ${className}`;
 ---
 
 {

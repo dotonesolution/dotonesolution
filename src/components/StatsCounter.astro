@@ -1,42 +1,65 @@
 ---
+import { Icon } from 'astro-icon/components';
 interface StatItem {
   number: string;
   label: string;
   formatted: string;
+  icon?: string;
 }
 
 interface Props {
   stats: StatItem[];
+  dark?: boolean;
 }
 
-const { stats } = Astro.props;
+const { stats, dark = false } = Astro.props;
 ---
-<div class="relative py-16 bg-gradient-to-b from-gray-50/50 to-gray-100/50">
+<div class={`relative py-20 overflow-hidden ${dark ? 'bg-gradient-to-br from-blue-950 via-blue-900 to-gray-950 text-white' : 'bg-gradient-to-br from-blue-300 via-gray-200 to-blue-400'}`}>
+  <!-- Background elements -->
+  <div class="absolute inset-0 z-0">
+    <div class={`absolute inset-0 ${dark ? 'opacity-15' : 'opacity-20'}`} style="background-image: radial-gradient(var(--primary-blue) 1.5px, transparent 1.5px); background-size: 25px 25px;"></div>
+    <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px]"></div>
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gray-500/20 rounded-full blur-[100px]"></div>
+  </div>
+  
   <div class="relative z-10">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((stat) => (
-          <div class="text-center transform hover:scale-105 transition-transform duration-300">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat, index) => (
+          <div 
+            class={`text-center transform transition-all duration-500 hover:scale-105 ${dark ? 'glass-dark shadow-xl' : 'glass shadow-lg'} p-6 rounded-xl border ${dark ? 'border-white/15' : 'border-primary-blue/20'}`}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            {stat.icon && (
+              <div class={`mx-auto w-14 h-14 rounded-full flex items-center justify-center mb-5 ${dark ? 'bg-white/15' : 'bg-primary-blue/20'}`}>
+                <i class={`${stat.icon} text-2xl ${dark ? 'text-white' : 'text-primary-blue'}`}></i>
+              </div>
+            )}
+            
             <div 
-              class="text-5xl font-bold text-primary-blue mb-3"
+              class={`text-5xl font-bold mb-3 ${dark ? 'text-white drop-shadow-md' : 'bg-clip-text text-transparent bg-gradient-to-r from-primary-blue via-dark-blue to-blue-900'}`}
               data-stat-target={stat.number}
               data-stat-formatted={stat.formatted}
             >
-              {stat.formatted}
+              0
             </div>
-            <div class="text-gray-600 font-medium text-lg">{stat.label}</div>
+            
+            <div class={`font-medium text-lg ${dark ? 'text-gray-200' : 'text-gray-700'}`}>{stat.label}</div>
+            
+            <!-- Decorative element -->
+            <div class={`w-16 h-1.5 mx-auto mt-4 rounded-full ${dark ? 'bg-gradient-to-r from-blue-500 to-blue-300' : 'bg-gradient-to-r from-primary-blue to-dark-blue shadow-sm'}`}></div>
           </div>
         ))}
       </div>
     </div>
   </div>
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(var(--royal-blue) 1px, transparent 1px); background-size: 20px 20px;"></div>
 </div>
 
 <script>
   const observedElements = new Set();
 
-  function animateValue(element: Element, end: string, duration: number = 1500) {
+  function animateValue(element: Element, end: string, duration: number = 2000) {
     if (observedElements.has(element)) return;
     observedElements.add(element);
     
@@ -62,20 +85,19 @@ const { stats } = Astro.props;
       if (entry.isIntersecting) {
         const target = entry.target.getAttribute('data-stat-target');
         if (target) {
-          animateValue(entry.target, target);
+          // Add a slight delay before starting animation for a better effect
+          setTimeout(() => {
+            animateValue(entry.target, target);
+          }, 300);
         }
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('[data-stat-target]').forEach(el => {
-    observer.observe(el);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-stat-target]').forEach(el => {
+      observer.observe(el);
+    });
   });
 </script>
-
-<style>
-  .text-primary-blue {
-    color: var(--royal-blue);
-  }
-</style>

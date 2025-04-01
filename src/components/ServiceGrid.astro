@@ -1,83 +1,53 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Button from './Button.astro';
-
-interface Service {
-    title: string;
-    description: string;
-    features?: string[];
-    icon?: string;
-}
-
-interface Category {
-    name: string;
-    cards: Array<{
-        title: string;
-        description: string;
-        mdiIcon: string;
-        link?: string;
-        buttonText?: string;
-    }>;
-}
-
-interface Props {
-    services?: Array<Service>;
-    categories?: Array<Category>;
-}
-
-const { services, categories } = Astro.props;
+import WhatWeOffer from '../data/WhatWeOffer.json';
 ---
-<div class="bg-gradient-to-b from-gray-50 to-white py-16">
-    <div class="container mx-auto px-4">
-        {categories ? (
-            categories.map(category => (
-                <div class="mb-12">
-                    <h2 class="text-2xl font-bold text-center mb-8">{category.name}</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {category.cards.map(card => (
-                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6" data-aos="fade-up">
-                                <div class="flex items-center mb-4">
-                                    <Icon name={`mdi:${card.mdiIcon}`} class="w-8 h-8 text-royal-blue" />
-                                    <h3 class="text-xl font-bold ml-3">{card.title}</h3>
-                                </div>
-                                <p class="text-gray-600 mb-6">{card.description}</p>
-                                {card.link && card.buttonText && (
-                                    <Button 
-                                        href={card.link} 
-                                        variant="primary"
-                                        class="w-full">
-                                        {card.buttonText}
-                                    </Button>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            ))
-        ) : services && (
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {services.map(service => (
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6" data-aos="fade-up">
-                        <div class="flex items-center mb-4">
-                            <Icon name={service.icon} class="w-8 h-8 text-royal-blue" />
-                            <h3 class="text-xl font-bold ml-3">{service.title}</h3>
-                        </div>
-                        <p class="text-gray-600 mb-6">{service.description}</p>
-                        {service.features && (
-                            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                                {service.features.map(feature => (
-                                    <li>{feature}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                ))}
-            </div>
-        )}
+
+<section class="py-20 bg-gradient-to-b from-gray-100 to-blue-100 relative overflow-hidden">
+  <!-- Layered subtle patterns with darker tones -->
+  <div class="absolute inset-0">
+    <!-- Primary pattern -->
+    <div class="absolute inset-0 bg-[radial-gradient(#475569_0.8px,transparent_0.8px)] [background-size:20px_20px] opacity-[0.12]"></div>
+    <!-- Secondary crossed pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(45deg,#475569_0.6px,transparent_0.6px),linear-gradient(-45deg,#475569_0.6px,transparent_0.6px)] [background-size:20px_20px] opacity-[0.12]"></div>
+    <!-- Tertiary wave pattern -->
+    <div class="absolute inset-0 bg-[repeating-linear-gradient(45deg,#1C75BB_0.6px,transparent_0.6px,transparent_10px)] opacity-[0.08]"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 relative">
+    <div class="text-center mb-16">
+      <div class="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-blue/10 text-primary-blue font-medium text-sm backdrop-blur-sm">
+        Our Services
+      </div>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        What We Offer
+      </h2>
+      <div class="w-20 h-1.5 bg-primary-blue rounded-full mx-auto"></div>
     </div>
-</div>
-<style>
-    .text-royal-blue {
-        color: var(--royal-blue);
-    }
-</style>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {WhatWeOffer.services.map((service) => (
+        <div class="group cursor-pointer">
+          <div class="bg-white/90 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full border border-transparent hover:border-primary-blue hover:translate-y-[-8px] relative overflow-hidden backdrop-blur-sm">
+            <!-- Decorative element -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary-blue/10 rounded-bl-[100px] transform translate-x-16 -translate-y-16 group-hover:translate-x-8 group-hover:-translate-y-8 group-hover:bg-primary-blue/20 transition-all duration-500"></div>
+            
+            <div class="relative">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary-blue/20 text-primary-blue mb-6 group-hover:scale-125 group-hover:bg-primary-blue group-hover:text-white transition-all duration-300">
+                <Icon name={`mdi:${service.mdiIcon}`} class="w-7 h-7" />
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary-blue transition-colors duration-300">
+                {service.title}
+              </h3>
+              
+              <p class="text-gray-600 leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

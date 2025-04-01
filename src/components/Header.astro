@@ -3,7 +3,7 @@
 import Button from './Button.astro';
 ---
 
-<header class="fixed w-full bg-white shadow-custom z-50">
+<header class="fixed w-full z-50 transition-all duration-300 bg-white" id="main-header">
   <div class="container mx-auto px-4">
     <nav class="flex items-center justify-between h-20">
       <!-- Logo -->
@@ -11,42 +11,44 @@ import Button from './Button.astro';
         <img 
           src="/assets/images/logo.png" 
           alt="Dot One Solutions" 
-          class="h-12 w-auto relative z-10" 
+          class="h-12 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" 
         />
+        <div class="absolute -inset-1 bg-primary-blue/10 rounded-full blur-md group-hover:bg-primary-blue/20 transition-all duration-300 -z-10"></div>
       </a>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex flex-1 justify-center items-center space-x-8">
-        <a href="/" class="text-primary-black hover:text-primary-blue transition-colors">Home</a>
-        <a href="/about" class="text-primary-black hover:text-primary-blue transition-colors">About</a>
-        <a href="/services" class="text-primary-black hover:text-primary-blue transition-colors">Services</a>
-        <a href="/contact" class="text-primary-black hover:text-primary-blue transition-colors">Contact Us</a>
+        <a href="/" class="text-primary-black hover:text-primary-blue transition-colors relative after:absolute after:w-0 after:h-0.5 after:bg-primary-blue after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all">Home</a>
+        <a href="/about" class="text-primary-black hover:text-primary-blue transition-colors relative after:absolute after:w-0 after:h-0.5 after:bg-primary-blue after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all">About</a>
+        <a href="/services" class="text-primary-black hover:text-primary-blue transition-colors relative after:absolute after:w-0 after:h-0.5 after:bg-primary-blue after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all">Services</a>
+        <a href="/contact" class="text-primary-black hover:text-primary-blue transition-colors relative after:absolute after:w-0 after:h-0.5 after:bg-primary-blue after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all">Contact Us</a>
       </div>
 
       <!-- Get Started Button -->
       <div class="hidden md:block">
-        <Button href="/contact" variant="primary">Get Started</Button>
+        <Button href="/contact" variant="primary" class="shadow-md hover:shadow-lg transition-shadow">Get Started</Button>
       </div>
 
       <!-- Mobile Menu Button -->
       <button 
         id="mobile-menu-button" 
-        class="md:hidden p-2 text-primary-black hover:text-primary-blue"
+        class="md:hidden p-2 text-primary-black hover:text-primary-blue transition-colors"
         aria-label="Toggle menu"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 12h18M3 6h18M3 18h18" />
+          <path id="menu-icon-open" d="M3 12h18M3 6h18M3 18h18" />
+          <path id="menu-icon-close" class="hidden" d="M18 6L6 18M6 6l12 12" />
         </svg>
       </button>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-4">
-        <a href="/" class="text-primary-black hover:text-primary-blue transition-colors">Home</a>
-        <a href="/about" class="text-primary-black hover:text-primary-blue transition-colors">About</a>
-        <a href="/services" class="text-primary-black hover:text-primary-blue transition-colors">Services</a>
-        <a href="/contact" class="text-primary-black hover:text-primary-blue transition-colors">Contact Us</a>
+    <div id="mobile-menu" class="hidden md:hidden pb-4 glass rounded-xl shadow-custom my-2 px-4">
+      <div class="flex flex-col space-y-4 py-4">
+        <a href="/" class="text-primary-black hover:text-primary-blue transition-colors px-2 py-1.5 rounded-md hover:bg-primary-blue/5">Home</a>
+        <a href="/about" class="text-primary-black hover:text-primary-blue transition-colors px-2 py-1.5 rounded-md hover:bg-primary-blue/5">About</a>
+        <a href="/services" class="text-primary-black hover:text-primary-blue transition-colors px-2 py-1.5 rounded-md hover:bg-primary-blue/5">Services</a>
+        <a href="/contact" class="text-primary-black hover:text-primary-blue transition-colors px-2 py-1.5 rounded-md hover:bg-primary-blue/5">Contact Us</a>
         <Button href="/contact" variant="primary" class="w-full">Get Started</Button>
       </div>
     </div>
@@ -54,17 +56,34 @@ import Button from './Button.astro';
 </header>
 
 <script>
+  const header = document.getElementById('main-header');
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
 
+  // Update header on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('shadow-md', 'bg-white/95');
+    } else {
+      header?.classList.remove('shadow-md', 'bg-white/95');
+    }
+  });
+
+  // Initialize header state on page load
+  if (window.scrollY > 20) {
+    header?.classList.add('shadow-md', 'bg-white/95');
+  }
+
+  // Mobile menu toggle
   mobileMenuButton?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
+    menuIconOpen?.classList.toggle('hidden');
+    menuIconClose?.classList.toggle('hidden');
   });
 </script>
 
 <style>
-  .shadow-custom {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  }
+  /* Add any additional header styling here */
 </style>

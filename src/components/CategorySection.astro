@@ -3,26 +3,65 @@ import Card from './Card.astro';
 
 interface Props {
   name: string;
-  cards: Array<{ title: string; description: string; icon: string; link: string }>;
+  subtitle?: string;
+  cards: Array<{ title: string; description: string; icon?: string; mdiIcon?: string; link: string }>;
+  dark?: boolean;
+  animated?: boolean;
 }
-const { name, cards } = Astro.props;
+
+const { name, subtitle, cards, dark = false, animated = true } = Astro.props;
 ---
 
-<section class="py-16 bg-gray-100">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-8">{name}</h2>
-    <div class={`grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center items-stretch max-w-5xl mx-auto
+<section class={`py-20 relative overflow-hidden ${dark ? 'bg-primary-black text-white' : 'bg-white'}`}>
+  <!-- Background elements -->
+  <div class="absolute inset-0 z-0">
+    {dark ? (
+      <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    ) : (
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+    )}
+    
+    <!-- Decorative blobs -->
+    <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-primary-blue/10 rounded-full blur-3xl"></div>
+    <div class="absolute -top-48 -right-48 w-96 h-96 bg-dark-blue/10 rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      {subtitle && (
+        <div class={`inline-block px-6 py-2 mb-4 rounded-full ${dark ? 'bg-white/10 text-white' : 'bg-primary-blue/10 text-primary-blue'} font-medium text-sm`} data-aos="fade-up">
+          {subtitle}
+        </div>
+      )}
+      
+      <h2 class={`text-3xl md:text-4xl font-bold ${dark ? 'text-white' : 'text-primary-black'}`} data-aos="fade-up" data-aos-delay="100">{name}</h2>
+      
+      <div class={`w-24 h-1 mx-auto my-6 rounded-full ${dark ? 'bg-white/20' : 'bg-gradient-to-r from-primary-blue to-dark-blue'}`} data-aos="fade-up" data-aos-delay="150"></div>
+    </div>
+    
+    <div class={`grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center items-stretch max-w-5xl mx-auto
       ${cards.length === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} 
       ${cards.length === 2 ? 'lg:max-w-4xl' : ''}`}>
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <Card
           title={card.title}
           description={card.description}
-          icon={card.icon}
+          mdiIcon={card.mdiIcon || card.icon}
           link={card.link}
-          class="w-full h-full hover:scale-105 transition-transform shadow-custom hover:shadow-custom-lg"
+          variant={dark ? 'dark' : index % 2 === 0 ? 'default' : 'glass'}
+          hoverEffect={animated}
+          class="w-full h-full"
         />
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(28, 117, 187, 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28, 117, 187, 0.2) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+</style>

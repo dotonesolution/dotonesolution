@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,9 +6,9 @@
 
 :root {
   --black: #000000;
-  --royal-blue: #0056d2;
-  --sky-blue: #87cefa;
-  --gray: #b0b0b0;
+  --primary-blue: #1c75bb;
+  --dark-blue: #144c7f;
+  --white: #ffffff;
 }
 
 html {
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  @apply font-sans antialiased text-primary-black font-normal;
+  @apply font-sans antialiased text-primary-black font-normal bg-white;
   overflow-y: auto;
 }
 
@@ -30,32 +30,94 @@ h6 {
   @apply font-bold;
 }
 
-/* Modern Scrollbar Styles */
+h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+/* Modern Futuristic Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.03);
   border-radius: 100vh;
-  margin: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--royal-blue), var(--sky-blue));
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
   border-radius: 100vh;
-  border: 3px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--sky-blue), var(--royal-blue));
-  border-width: 2px;
+  background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+  border-width: 1px;
 }
 
 /* Firefox Scrollbar Styles */
 * {
-  scrollbar-width: auto;
-  scrollbar-color: var(--royal-blue) transparent;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-blue) transparent;
+}
+
+/* Futuristic glass-morphism styles */
+.glass {
+  @apply backdrop-blur-md bg-white/80 border border-white/20;
+}
+
+.glass-dark {
+  @apply backdrop-blur-md bg-primary-black/80 border border-white/10;
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-blue),
+    var(--dark-blue),
+    var(--primary-blue)
+  );
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: 0.6rem;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
