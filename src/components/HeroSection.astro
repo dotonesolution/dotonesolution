@@ -74,8 +74,7 @@ const useDark = variant === 'dark';
         </div>
       )}
       
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
-        {title}
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white" set:html={title}>
       </h1>
       
       <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto text-gray-300">
@@ -99,7 +98,6 @@ const useDark = variant === 'dark';
             class="group py-4 px-8 border-2 border-white/20 bg-white/10 backdrop-blur-sm text-white rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/30 flex items-center justify-center transform hover:-translate-y-1"
           >
             {secondaryCta.text}
-            <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
           </a>
         )}
       </div>

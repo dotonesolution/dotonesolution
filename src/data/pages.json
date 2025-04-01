@@ -2,7 +2,7 @@
   "sections": {
     "home": {
       "hero": {
-        "title": "We empower businesses with Expert Tech Services",
+        "title": "We empower businesses with <span class=\"text-primary-blue\">Expert Tech</span> Services",
         "description": "Partner with Dot One Solutions to unlock your business potential. We don't just provide tech services – we deliver tailored digital solutions that drive growth, streamline operations, and keep you ahead of the competition.",
         "gradientBackground": "linear-gradient(45deg, #1a2b47, #3a547e)",
         "backgroundImage": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
