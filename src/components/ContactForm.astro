@@ -1,7 +1,7 @@
 ---
 // src/components/ContactForm.astro
-import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
+import Button from './Button.astro';
 ---
 
 <div class="glass border border-white/20 rounded-xl p-8 shadow-futuristic relative overflow-hidden" data-aos="fade-up">
@@ -18,7 +18,7 @@ import { Icon } from 'astro-icon/components';
     </div>
     
     <form 
-      action="https://formsubmit.co/rahagi7833@shouxs.com" 
+      action="https://formsubmit.co/info@dotonesolutions.co.ke" 
       method="POST"
       id="contactForm" 
       class="space-y-6"
@@ -27,12 +27,12 @@ import { Icon } from 'astro-icon/components';
       <input type="hidden" name="_subject" value="New Contact Form Submission">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_next" value="https://dotonedev.netlify.app/thank-you">
+      <input type="hidden" name="_next" value="https://dotonesolutions.co.ke/thank-you">
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Name Input -->
         <div class="form-group">
-          <label for="name" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+          <label for="name" class="flex items-center text-sm font-medium text-primary-black mb-2">
             <Icon name="mdi:account" class="w-4 h-4 mr-2 text-primary-blue" />
             Full Name
           </label>
@@ -48,7 +48,7 @@ import { Icon } from 'astro-icon/components';
 
         <!-- Email Input -->
         <div class="form-group">
-          <label for="email" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+          <label for="email" class="flex items-center text-sm font-medium text-primary-black mb-2">
             <Icon name="mdi:email-outline" class="w-4 h-4 mr-2 text-primary-blue" />
             Email Address
           </label>
@@ -65,7 +65,7 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Subject Input -->
       <div class="form-group">
-        <label for="subject" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+        <label for="subject" class="flex items-center text-sm font-medium text-primary-black mb-2">
           <Icon name="mdi:text-box-outline" class="w-4 h-4 mr-2 text-primary-blue" />
           Subject
         </label>
@@ -81,7 +81,7 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Message Input -->
       <div class="form-group">
-        <label for="message" class="block text-sm font-medium text-primary-black mb-2 flex items-center">
+        <label for="message" class="flex items-center text-sm font-medium text-primary-black mb-2">
           <Icon name="mdi:message-text-outline" class="w-4 h-4 mr-2 text-primary-blue" />
           Message
         </label>

@@ -4,8 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CompanyProfile from "../components/CompanyProfile.astro";
 import StatsCounter from "../components/StatsCounter.astro";
 import WhyChooseUs from "../components/WhyChooseUs.astro";
+import CallToAction from "../components/CallToAction.astro";
 import CompanyInfo from "../data/CompanyInfo.json";
 import StatsData from "../data/StatsData.json";
+import CallToActions from "../data/CallToActions.json";
 ---
 
 <BaseLayout title="About">
@@ -20,4 +22,5 @@ import StatsData from "../data/StatsData.json";
         points={CompanyInfo.whyChooseUs.points}
     />
     <StatsCounter stats={StatsData.stats} />
+    <CallToAction {...CallToActions.about} />
 </BaseLayout>

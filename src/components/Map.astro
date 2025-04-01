@@ -1,11 +1,15 @@
 ---
-const { address } = Astro.props;
 ---
 <div class="w-full h-96 bg-white rounded-lg shadow-md overflow-hidden">
-  <iframe
-    title="Location Map"
-    class="w-full h-full border-0"
-    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(address)}`}
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31911.334574198503!2d36.77487736358336!3d-1.2180125651921134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17e27fc4fde3%3A0x1464d3dd2e44a14e!2sKitisuru%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1743534279447!5m2!1sen!2ske"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen=""
     loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="DotOne Solutions Location Map"
+    class="w-full h-full"
   />
 </div>

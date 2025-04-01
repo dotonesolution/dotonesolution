@@ -7,8 +7,8 @@ import ServiceGrid from "../components/ServiceGrid.astro";
 import StatsCounter from "../components/StatsCounter.astro";
 import CallToAction from "../components/CallToAction.astro";
 import StatsData from "../data/StatsData.json";
-import SummaryData from "../data/SummaryData.json";
 import WhatWeOffer from "../data/WhatWeOffer.json";
+import CallToActions from "../data/CallToActions.json";
 ---
 
 <BaseLayout title="Home">
@@ -24,16 +24,7 @@ import WhatWeOffer from "../data/WhatWeOffer.json";
   <StatsCounter stats={StatsData.stats}/>
 
   <!-- Call to Action Section -->
-  <CallToAction 
-    title={SummaryData.heading}
-    description={SummaryData.text}
-    buttonText={SummaryData.consultationButton.buttonText}
-    buttonLink={SummaryData.consultationButton.buttonLink}
-    secondaryButtonText={SummaryData.learnMoreButton.buttonText}
-    secondaryButtonLink={SummaryData.learnMoreButton.buttonLink}
-    theme="brand"
-  />
-
+  <CallToAction {...CallToActions.home} />
 </BaseLayout>
 
 <style>

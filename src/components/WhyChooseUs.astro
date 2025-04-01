@@ -27,49 +27,63 @@ const getIconForTitle = (title: string, defaultIcon: string): string => {
 };
 ---
 
-<section class={`py-20 relative overflow-hidden ${dark ? 'bg-primary-black text-white' : 'bg-white'}`}>
-  <!-- Background elements -->
+<section class={`py-20 relative overflow-hidden ${dark ? 'bg-gradient-to-br from-gray-900 to-primary-black' : 'bg-gradient-to-br from-blue-50 via-white to-indigo-50'}`}>
+  <!-- Background decorative elements -->
   <div class="absolute inset-0 z-0">
-    {dark ? (
-      <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-    ) : (
-      <div class="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
-    )}
-    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-blue/10 rounded-full blur-3xl"></div>
-    <div class="absolute -top-24 -right-24 w-96 h-96 bg-dark-blue/10 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#1C75BB_0.5px,transparent_0.5px)] [background-size:24px_24px] opacity-[0.15]"></div>
+    <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-blue/10 rounded-full blur-[100px]"></div>
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-dark-blue/10 rounded-full blur-[100px]"></div>
   </div>
   
   <div class="max-w-6xl mx-auto px-4 relative z-10">
     <div class="text-center mb-16">
       {subtitle && (
-        <div class={`inline-block px-6 py-2 mb-4 rounded-full ${dark ? 'bg-white/10 text-white' : 'bg-primary-blue/10 text-primary-blue'} font-medium text-sm`} data-aos="fade-up">
+        <div 
+          class={`inline-block px-6 py-2 mb-4 rounded-full ${dark ? 'bg-white/10 backdrop-blur-sm border border-white/20' : 'bg-primary-blue/10'} text-${dark ? 'white' : 'primary-blue'} font-medium text-sm`}
+          data-aos="fade-up"
+        >
           {subtitle}
         </div>
       )}
       
-      <h2 class={`text-3xl md:text-4xl font-bold ${dark ? 'text-white' : 'text-primary-black'}`} data-aos="fade-up" data-aos-delay="100">{title}</h2>
-      
-      <div class={`w-24 h-1 mx-auto my-6 rounded-full ${dark ? 'bg-white/20' : 'bg-gradient-to-r from-primary-blue to-dark-blue'}`} data-aos="fade-up" data-aos-delay="150"></div>
+      <h2 
+        class={`text-3xl md:text-4xl font-bold mb-6 ${dark ? 'text-white' : 'text-gray-900'} relative inline-block`}
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <span class="relative">
+          {title}
+          <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-primary-blue to-dark-blue rounded-full"></div>
+        </span>
+      </h2>
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {points.map((point, idx) => (
         <div 
-          class={`group ${dark ? 'glass-dark border border-white/10' : 'glass border border-gray-100'} rounded-xl shadow-custom transform-gpu transition-all duration-500 hover:shadow-futuristic hover:-translate-y-2 p-6`} 
-          data-aos="fade-up" 
+          class={`group transform-gpu transition-all duration-500 hover:-translate-y-2`}
+          data-aos="fade-up"
           data-aos-delay={idx * 100}
         >
-          <div class="flex flex-col items-center">
-            <div class="feature-icon-wrapper mb-6 relative">
-              <div class={`w-16 h-16 rounded-xl flex items-center justify-center ${dark ? 'bg-gradient-to-br from-primary-blue to-dark-blue' : 'bg-gradient-to-br from-primary-blue/90 to-dark-blue/90'}`}>
+          <div class={`h-full p-8 rounded-2xl backdrop-blur-sm ${dark ? 'bg-white/5 hover:bg-white/10' : 'bg-white/80 hover:bg-white'} border ${dark ? 'border-white/10' : 'border-primary-blue/10'} shadow-custom hover:shadow-custom-lg transition-all duration-500 relative overflow-hidden`}>
+            <!-- Hover gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-blue/10 to-dark-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <!-- Icon wrapper -->
+            <div class="feature-icon-wrapper mb-6 relative z-10">
+              <div class={`w-16 h-16 rounded-xl flex items-center justify-center ${dark ? 'bg-gradient-to-br from-primary-blue to-dark-blue' : 'bg-gradient-to-br from-primary-blue to-dark-blue'} transform-gpu transition-transform duration-500 group-hover:scale-110`}>
                 <Icon name={getIconForTitle(point.title, point.icon)} class="w-8 h-8 text-white" />
               </div>
               <div class="feature-icon-glow"></div>
             </div>
             
-            <h3 class={`text-xl font-semibold mb-3 text-center ${dark ? 'text-white' : 'text-primary-black'}`}>{point.title}</h3>
+            <h3 class={`text-xl font-bold mb-4 text-center relative z-10 ${dark ? 'text-white group-hover:text-primary-blue/90' : 'text-gray-900 group-hover:text-primary-blue'} transition-colors duration-300`}>
+              {point.title}
+            </h3>
             
-            <p class={`text-center ${dark ? 'text-gray-300' : 'text-gray-600'}`}>{point.description}</p>
+            <p class={`text-center relative z-10 ${dark ? 'text-gray-300' : 'text-gray-600'}`}>
+              {point.description}
+            </p>
           </div>
         </div>
       ))}
@@ -78,41 +92,17 @@ const getIconForTitle = (title: string, defaultIcon: string): string => {
 </section>
 
 <style>
-  .bg-grid-pattern {
-    background-image: 
-      linear-gradient(rgba(28, 117, 187, 0.2) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(28, 117, 187, 0.2) 1px, transparent 1px);
-    background-size: 30px 30px;
+  .shadow-custom {
+    box-shadow: 0 4px 6px -1px rgba(28, 117, 187, 0.1), 0 2px 4px -1px rgba(28, 117, 187, 0.06);
+  }
+
+  .shadow-custom-lg {
+    box-shadow: 0 10px 25px -5px rgba(28, 117, 187, 0.2), 0 8px 10px -6px rgba(28, 117, 187, 0.1);
   }
 
   .feature-icon-wrapper {
     position: relative;
     z-index: 1;
-    transition: transform 0.5s ease;
-  }
-
-  .feature-icon-wrapper::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 12px;
-    padding: 1px;
-    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .group:hover .feature-icon-wrapper {
-    transform: scale(1.05);
-  }
-
-  .group:hover .feature-icon-wrapper::before {
-    opacity: 1;
   }
 
   .feature-icon-glow {
