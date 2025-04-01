@@ -1,6 +1,32 @@
 ---
 import { Icon } from 'astro-icon/components';
-import WhatWeOffer from '../data/WhatWeOffer.json';
+import services from '../data/services.json';
+
+interface Service {
+  title: string;
+  description: string;
+  icon?: string;
+  link: string;
+  features?: string[];
+}
+
+interface Props {
+  services?: Service[];
+  categories?: Array<{
+    name: string;
+    services: string[];
+  }>;
+}
+
+const props = Astro.props;
+// If categories are provided, map them to full service objects
+const serviceItems = props.categories 
+  ? props.categories.flatMap(category => 
+      category.services.map(serviceName => 
+        services.serviceList.find(s => s.title === serviceName)
+      )
+    ).filter(Boolean)
+  : props.services || services.serviceList;
 ---
 
 <section class="py-20 bg-gradient-to-b from-gray-100 to-blue-100 relative overflow-hidden">
@@ -26,7 +52,7 @@ import WhatWeOffer from '../data/WhatWeOffer.json';
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {WhatWeOffer.services.map((service) => (
+      {serviceItems.map((service) => (
         <div class="group cursor-pointer">
           <div class="bg-white/90 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full border border-transparent hover:border-primary-blue hover:translate-y-[-8px] relative overflow-hidden backdrop-blur-sm">
             <!-- Decorative element -->
@@ -34,15 +60,15 @@ import WhatWeOffer from '../data/WhatWeOffer.json';
             
             <div class="relative">
               <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary-blue/20 text-primary-blue mb-6 group-hover:scale-125 group-hover:bg-primary-blue group-hover:text-white transition-all duration-300">
-                <Icon name={`mdi:${service.mdiIcon}`} class="w-7 h-7" />
+                <Icon name={`mdi:${service?.icon?.replace('mdi:', '') || 'apps'}`} class="w-7 h-7" />
               </div>
               
               <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary-blue transition-colors duration-300">
-                {service.title}
+                {service?.title}
               </h3>
               
               <p class="text-gray-600 leading-relaxed">
-                {service.description}
+                {service?.description}
               </p>
             </div>
           </div>

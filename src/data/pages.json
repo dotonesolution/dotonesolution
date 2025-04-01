@@ -1,0 +1,92 @@
+{
+  "sections": {
+    "home": {
+      "hero": {
+        "title": "We empower businesses with Expert Tech Services",
+        "description": "Partner with Dot One Solutions to unlock your business potential. We don't just provide tech services – we deliver tailored digital solutions that drive growth, streamline operations, and keep you ahead of the competition.",
+        "gradientBackground": "linear-gradient(45deg, #1a2b47, #3a547e)",
+        "backgroundImage": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "gradientOverlay": "linear-gradient(to top, var(--black), transparent)",
+        "primaryCta": {
+          "text": "Transform Your Business",
+          "link": "/services"
+        },
+        "secondaryCta": {
+          "text": "Let's Talk",
+          "link": "/contact"
+        }
+      },
+      "cta": {
+        "title": "Why Choose Dot One Solutions?",
+        "description": "At Dot One Solutions, we combine innovative technology with strategic consulting to deliver customized solutions that empower your business. Take the first step toward a smarter, more connected future.",
+        "buttonText": "Schedule Consultation",
+        "buttonLink": "/contact",
+        "secondaryButtonText": "Learn More",
+        "secondaryButtonLink": "/about",
+        "theme": "brand",
+        "icon": "mdi:star"
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "Empowering Your Digital Future",
+        "description": "At Dot One Solutions, we bridge the gap between technology and business. Our team of experienced tech enthusiasts is dedicated to delivering innovative, customized solutions tailored to your unique needs.",
+        "gradientBackground": "linear-gradient(225deg, var(--gray), color-mix(in srgb, var(--royal-blue) 40%, transparent))",
+        "primaryCta": {
+          "text": "Our Story",
+          "link": "/about#story"
+        },
+        "secondaryCta": {
+          "text": "Meet the Team",
+          "link": "/about#team"
+        }
+      },
+      "cta": {
+        "title": "Ready to Start Your Digital Journey?",
+        "description": "Join us in creating innovative solutions that drive your business forward. Let's turn your vision into reality.",
+        "buttonText": "Get Started",
+        "buttonLink": "/contact",
+        "secondaryButtonText": "View Our Services",
+        "secondaryButtonLink": "/services",
+        "theme": "brand",
+        "icon": "mdi:rocket-launch"
+      }
+    },
+    "services": {
+      "hero": {
+        "title": "Solutions Crafted Just for You",
+        "description": "Your business is unique, and so are your challenges. Whether you need cutting-edge software development or want to harness the power of AI, we're here to listen, understand, and create solutions that perfectly align with your vision. Let's work together to bring your ideas to life.",
+        "gradientBackground": "linear-gradient(90deg, var(--sky-blue), color-mix(in srgb, var(--royal-blue) 40%, transparent))",
+        "primaryCta": {
+          "text": "View All Services",
+          "link": "#services-grid"
+        },
+        "secondaryCta": {
+          "text": "Get a Quote",
+          "link": "/contact#quote"
+        }
+      },
+      "cta": {
+        "title": "Ready to Transform Your Business?",
+        "description": "Let's discuss how our services can help you achieve your business goals and drive innovation.",
+        "buttonText": "Get Started",
+        "buttonLink": "/contact",
+        "secondaryButtonText": "Learn More About Us",
+        "secondaryButtonLink": "/about",
+        "theme": "brand",
+        "icon": "mdi:lightbulb"
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "Let's Build Something Extraordinary Together",
+        "description": "Have a project in mind or questions about how we can help? Our team at Dot One Solutions is ready to assist.",
+        "gradientBackground": "linear-gradient(135deg, color-mix(in srgb, var(--royal-blue) 40%, transparent), var(--sky-blue))",
+        "primaryCta": {
+          "text": "Get in Touch",
+          "link": "/contact#form"
+        }
+      }
+    }
+  }
+}

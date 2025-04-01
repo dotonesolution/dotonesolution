@@ -1,4 +1,13 @@
 {
+  "about": {
+    "tag": "About Us",
+    "heading": "A Forward-Thinking Digital Solutions Firm Driving Innovation",
+    "description": "At Dot One Solutions, we're more than just a tech company. We're your partners in digital transformation. Our team of expert developers, designers, and strategists work together to create innovative solutions that help businesses thrive in the digital age.",
+    "button": {
+      "text": "Learn More About Us",
+      "link": "/about"
+    }
+  },
   "mission": {
     "title": "Our Mission",
     "description": "To empower businesses and individuals with cutting-edge technology solutions that drive growth and innovation."
@@ -24,6 +33,7 @@
   },
   "whyChooseUs": {
     "title": "Why Choose Dot One Solutions?",
+    "description": "At Dot One Solutions, we combine innovative technology with strategic consulting to deliver customized solutions that empower your business. Take the first step toward a smarter, more connected future.",
     "points": [
       {
         "title": "Expertise You Can Trust",
@@ -46,5 +56,32 @@
         "icon": "cube-scan"
       }
     ]
+  },
+  "stats": [
+    {
+      "number": "100+",
+      "label": "Projects Completed",
+      "formatted": "100+"
+    },
+    {
+      "number": "10+",
+      "label": "Active clients",
+      "formatted": "10+"
+    },
+    {
+      "number": "2024",
+      "label": "Year Founded",
+      "formatted": "2024"
+    },
+    {
+      "number": "5+",
+      "label": "Economic sectors",
+      "formatted": "5+"
+    }
+  ],
+  "contact": {
+    "address": "Kitisuru, Kirawa Rd Westlands, Nairobi, Kenya",
+    "email": "info@dotonesolutions.co.ke",
+    "phone": "+254723138738"
   }
 }

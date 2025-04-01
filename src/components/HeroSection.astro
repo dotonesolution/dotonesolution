@@ -1,9 +1,8 @@
 ---
 // src/components/HeroSection.astro
 import { Icon } from 'astro-icon/components';
-import PageSections from '../data/PageSections.json';
 
-interface SectionData {
+interface Props {
   title: string;
   subtitle?: string;
   description: string;
@@ -18,28 +17,33 @@ interface SectionData {
     text: string;
     link: string;
   };
-}
-
-interface Props {
-  section: keyof typeof PageSections.sections;
   showScrollIndicator?: boolean;
   variant?: 'default' | 'gradient' | 'dark';
 }
 
-const { section, showScrollIndicator = true, variant = 'default' } = Astro.props;
-const sectionData = PageSections.sections[section] as SectionData;
+const { 
+  title,
+  subtitle,
+  description,
+  gradientBackground,
+  backgroundImage,
+  gradientOverlay,
+  primaryCta,
+  secondaryCta,
+  showScrollIndicator = true,
+  variant = 'default'
+} = Astro.props;
 
-const backgroundImage = 'backgroundImage' in sectionData ? sectionData.backgroundImage : '';
 const useGradient = variant === 'gradient';
 const useDark = variant === 'dark';
 ---
 
 <section 
-  class={`relative min-h-[60vh] flex items-center justify-center text-center overflow-hidden pt-16 ${useDark ? 'bg-primary-black' : section === 'home' ? 'bg-gray-800' : ''}`}
+  class={`relative min-h-[60vh] flex items-center justify-center text-center overflow-hidden pt-16 ${useDark ? 'bg-primary-black' : ''}`}
   id="hero-section"
 >
   <!-- Background elements based on variant or section -->
-  {section === 'home' && (
+  {backgroundImage && (
     <div class="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-primary-black z-0">
       <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <!-- Enhanced overlay for better text readability -->
@@ -64,37 +68,37 @@ const useDark = variant === 'dark';
 
   <div class="container relative z-10 px-4 py-10">
     <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-      {sectionData.subtitle && (
+      {subtitle && (
         <div class="inline-block px-6 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base tracking-wide transform hover:scale-105 transition-transform">
-          {sectionData.subtitle}
+          {subtitle}
         </div>
       )}
       
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
-        {sectionData.title}
+        {title}
       </h1>
       
       <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto text-gray-300">
-        {sectionData.description}
+        {description}
       </p>
-      
+
       <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-        {sectionData.primaryCta && (
+        {primaryCta && (
           <a 
-            href={sectionData.primaryCta?.link} 
+            href={primaryCta.link} 
             class="group py-4 px-8 bg-primary-blue text-white rounded-full font-medium transition-all duration-300 hover:bg-dark-blue shadow-lg hover:shadow-xl hover:shadow-primary-blue/20 transform hover:-translate-y-1 flex items-center justify-center"
           >
-            {sectionData.primaryCta?.text}
+            {primaryCta.text}
             <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
           </a>
         )}
         
-        {sectionData.secondaryCta && (
+        {secondaryCta && (
           <a 
-            href={sectionData.secondaryCta?.link} 
+            href={secondaryCta.link} 
             class="group py-4 px-8 border-2 border-white/20 bg-white/10 backdrop-blur-sm text-white rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/30 flex items-center justify-center transform hover:-translate-y-1"
           >
-            {sectionData.secondaryCta?.text}
+            {secondaryCta.text}
             <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
           </a>
         )}
@@ -164,6 +168,12 @@ const useDark = variant === 'dark';
     75% {
       transform: translate(5%, 5%) rotate(5deg);
     }
+  }
+
+  @keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   @keyframes pulse {

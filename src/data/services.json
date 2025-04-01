@@ -1,0 +1,90 @@
+{
+  "serviceList": [
+    {
+      "title": "Software Development & Consultation",
+      "description": "End-to-end custom software solutions with agile methodologies and seamless integration.",
+      "features": [
+        "End-to-end custom software solutions",
+        "Agile methodologies for rapid delivery",
+        "Seamless integration with your existing systems"
+      ],
+      "icon": "mdi:code-braces",
+      "link": "/services/software-development"
+    },
+    {
+      "title": "Data Analysis & Visualization",
+      "description": "Transform raw data into actionable insights with predictive analytics and interactive dashboards.",
+      "features": [
+        "Turning raw data into actionable insights",
+        "Predictive analytics to drive smarter decisions",
+        "Interactive dashboards and visual tools"
+      ],
+      "icon": "mdi:chart-bar",
+      "link": "/services/data-analysis"
+    },
+    {
+      "title": "Machine Learning & AI Solutions",
+      "description": "Leverage cutting-edge AI and ML technologies for intelligent automation and business growth.",
+      "features": [
+        "Intelligent automation for improved efficiency",
+        "Custom AI models designed for your business needs",
+        "Cutting-edge tools leveraging the latest frameworks"
+      ],
+      "icon": "mdi:robot",
+      "link": "/services/ai-solutions"
+    },
+    {
+      "title": "Digital Literacy Consultation",
+      "description": "Empowering teams with digital skills through tailored training programs and workshops.",
+      "features": [
+        "Tailored training programs for organisations and individuals",
+        "Empowering teams to excel in the digital era",
+        "Workshops and resources for enhanced digital fluency"
+      ],
+      "icon": "mdi:school",
+      "link": "/services/digital-literacy"
+    },
+    {
+      "title": "Creative Design & Prototyping",
+      "description": "Create exceptional user experiences through user-centered design and rapid prototyping.",
+      "features": [
+        "User-centered UX/UI designs for exceptional experiences",
+        "Rapid prototyping to bring ideas to life quickly",
+        "Collaborative design to align with your vision"
+      ],
+      "icon": "mdi:palette",
+      "link": "/services/creative-design"
+    },
+    {
+      "title": "Cloud Solutions",
+      "description": "Optimize your business with scalable cloud infrastructure and services designed for maximum efficiency.",
+      "features": [
+        "Scalable cloud infrastructure",
+        "Cloud-native application development",
+        "Reliable and secure hosting solutions"
+      ],
+      "icon": "mdi:cloud",
+      "link": "/services/cloud-solutions"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Development",
+      "services": ["Software Development & Consultation", "Cloud Solutions"]
+    },
+    {
+      "name": "Data & AI",
+      "services": [
+        "Data Analysis & Visualization",
+        "Machine Learning & AI Solutions"
+      ]
+    },
+    {
+      "name": "Design & Training",
+      "services": [
+        "Creative Design & Prototyping",
+        "Digital Literacy Consultation"
+      ]
+    }
+  ]
+}

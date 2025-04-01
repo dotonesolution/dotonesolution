@@ -3,7 +3,7 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 py-4">
+<footer class="bg-gray-800 py-4">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
       <!-- Logo -->
@@ -11,20 +11,14 @@ const currentYear = new Date().getFullYear();
         <img 
           src="/assets/images/logo/DotOne_Light.png" 
           alt="Dot One Solutions" 
-          class="h-14 w-auto filter brightness-100"
+          class="h-14 w-auto"
         />
       </a>
 
       <!-- Copyright -->
-      <p class="text-white text-sm font-medium tracking-wide">
+      <p class="text-gray-400 text-sm font-medium tracking-wide">
         © {currentYear} Dot One Solutions. All rights reserved.
       </p>
     </div>
   </div>
 </footer>
-
-<style>
-  .bg-gray-900 {
-    background-color: #111827;
-  }
-</style>

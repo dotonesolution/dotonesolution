@@ -1,30 +1,29 @@
 ---
-// Import necessary components and data
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
 import AboutSection from "../components/AboutSection.astro";
 import ServiceGrid from "../components/ServiceGrid.astro";
 import StatsCounter from "../components/StatsCounter.astro";
 import CallToAction from "../components/CallToAction.astro";
-import StatsData from "../data/StatsData.json";
-import WhatWeOffer from "../data/WhatWeOffer.json";
-import CallToActions from "../data/CallToActions.json";
+import company from "../data/company.json";
+import services from "../data/services.json";
+import pages from "../data/pages.json";
 ---
 
 <BaseLayout title="Home">
   <!-- Hero Section -->
-  <HeroSection section="home" />
+  <HeroSection {...pages.sections.home.hero} />
 
   <!-- About Section -->
   <AboutSection />
 
   <!-- Service Grid Section -->
-  <ServiceGrid categories={WhatWeOffer.categories} />
+  <ServiceGrid categories={services.categories} />
 
-  <StatsCounter stats={StatsData.stats}/>
+  <StatsCounter stats={company.stats}/>
 
   <!-- Call to Action Section -->
-  <CallToAction {...CallToActions.home} />
+  <CallToAction {...pages.sections.home.cta} />
 </BaseLayout>
 
 <style>

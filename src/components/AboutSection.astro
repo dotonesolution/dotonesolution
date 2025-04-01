@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import AboutData from '../data/AboutData.json';
+import company from '../data/company.json';
 ---
 
 <section class="relative py-20 bg-white overflow-hidden">
@@ -17,10 +17,11 @@ import AboutData from '../data/AboutData.json';
       <!-- Left Column -->
       <div class="flex-1 max-w-xl">
         <div class="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-blue/10 text-primary-blue font-medium text-sm">
-          {AboutData.tag}
+          {company.about.tag}
         </div>
+        
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-          {AboutData.heading}
+          {company.about.heading}
         </h2>
         <div class="w-20 h-1.5 bg-primary-blue rounded-full mb-8"></div>
       </div>
@@ -28,13 +29,13 @@ import AboutData from '../data/AboutData.json';
       <!-- Right Column -->
       <div class="flex-1 max-w-xl">
         <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-          {AboutData.description}
+          {company.about.description}
         </p>
         <a 
-          href={AboutData.button.link}
+          href={company.about.button.link}
           class="inline-flex items-center group text-primary-blue font-semibold hover:text-dark-blue transition-colors"
         >
-          {AboutData.button.text}
+          {company.about.button.text}
           <Icon 
             name="mdi:arrow-right" 
             class="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1"

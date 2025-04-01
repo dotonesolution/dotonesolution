@@ -3,12 +3,12 @@ import Hero from "../components/Hero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceGrid from "../components/ServiceGrid.astro";
 import CallToAction from "../components/CallToAction.astro";
-import ServiceList from "../data/ServiceList.json";
-import CallToActions from "../data/CallToActions.json";
+import services from "../data/services.json";
+import pages from "../data/pages.json";
 ---
 
 <BaseLayout title="Services">
-    <Hero section="services"/>
-    <ServiceGrid services={ServiceList.services} />
-    <CallToAction {...CallToActions.services} />
+    <Hero {...pages.sections.services.hero} />
+    <ServiceGrid services={services.serviceList} />
+    <CallToAction {...pages.sections.services.cta} />
 </BaseLayout>

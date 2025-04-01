@@ -5,22 +5,21 @@ import CompanyProfile from "../components/CompanyProfile.astro";
 import StatsCounter from "../components/StatsCounter.astro";
 import WhyChooseUs from "../components/WhyChooseUs.astro";
 import CallToAction from "../components/CallToAction.astro";
-import CompanyInfo from "../data/CompanyInfo.json";
-import StatsData from "../data/StatsData.json";
-import CallToActions from "../data/CallToActions.json";
+import company from "../data/company.json";
+import pages from "../data/pages.json";
 ---
 
 <BaseLayout title="About">
-    <Hero section="about" />
+    <Hero {...pages.sections.about.hero} />
     <CompanyProfile 
-        mission={CompanyInfo.mission}
-        vision={CompanyInfo.vision}
-        journey={CompanyInfo.journey}
+        mission={company.mission}
+        vision={company.vision}
+        journey={company.journey}
     />
     <WhyChooseUs 
-        title={CompanyInfo.whyChooseUs.title}
-        points={CompanyInfo.whyChooseUs.points}
+        title={company.whyChooseUs.title}
+        points={company.whyChooseUs.points}
     />
-    <StatsCounter stats={StatsData.stats} />
-    <CallToAction {...CallToActions.about} />
+    <StatsCounter stats={company.stats} />
+    <CallToAction {...pages.sections.about.cta} />
 </BaseLayout>

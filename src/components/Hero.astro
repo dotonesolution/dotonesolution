@@ -1,35 +1,35 @@
 ---
-import PageSections from '../data/PageSections.json';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
-  section: keyof typeof PageSections.sections;
+  title: string;
+  subtitle?: string;
+  description: string;
+  gradientBackground?: string;
+  primaryCta?: {
+    text: string;
+    link: string;
+  };
+  secondaryCta?: {
+    text: string;
+    link: string;
+  };
   showCta?: boolean;
 }
 
-const { section, showCta = false } = Astro.props;
-const sectionData = PageSections.sections[section];
+const { 
+  title, 
+  subtitle, 
+  description, 
+  gradientBackground = 'linear-gradient(135deg, var(--primary-blue), var(--dark-blue))',
+  primaryCta,
+  secondaryCta,
+  showCta = false 
+} = Astro.props;
 
-// Default gradient if not provided
-const gradientBackground = 'gradientBackground' in sectionData 
-  ? sectionData.gradientBackground 
-  : 'linear-gradient(135deg, var(--primary-blue), var(--dark-blue))';
-
-// Determine text color based on the section - using black and grey colors
-const textColorClass = {
-  'home': 'text-gray-900',
-  'about': 'text-gray-800',
-  'services': 'text-black',
-  'contact': 'text-gray-900'
-}[section] || 'text-gray-800';
-
-const descriptionColorClass = {
-  'home': 'text-gray-700',
-  'about': 'text-gray-600',
-  'services': 'text-gray-700',
-  'contact': 'text-gray-700'
-}[section] || 'text-gray-600';
+const textColorClass = 'text-gray-900';
+const descriptionColorClass = 'text-gray-700';
 ---
 
 <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24" 
@@ -62,30 +62,30 @@ const descriptionColorClass = {
 
   <div class="container relative z-10 px-4">
     <div class="max-w-3xl mx-auto">
-      {sectionData.subtitle && (
+      {subtitle && (
         <div class="inline-block px-6 py-2.5 mb-6 rounded-full bg-gray-100 border border-gray-300 text-gray-700 font-medium text-sm">
-          {sectionData.subtitle}
+          {subtitle}
         </div>
       )}
       
       <h1 class={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 ${textColorClass}`}>
-        {sectionData.title}
+        {title}
       </h1>
       
       <p class={`text-lg md:text-xl mb-10 leading-relaxed ${descriptionColorClass}`}>
-        {sectionData.description}
+        {description}
       </p>
 
-      {showCta && 'primaryCta' in sectionData && (
+      {showCta && primaryCta && (
         <div class="flex flex-col sm:flex-row justify-center gap-4 items-center">
-          <Button href={sectionData.primaryCta.link} variant="primary" size="lg" class="group">
-            {sectionData.primaryCta.text}
+          <Button href={primaryCta.link} variant="primary" size="lg" class="group">
+            {primaryCta.text}
             <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" />
           </Button>
           
-          {'secondaryCta' in sectionData && (
-            <Button href={sectionData.secondaryCta.link} variant="glass" size="lg" class="group">
-              {sectionData.secondaryCta.text}
+          {secondaryCta && (
+            <Button href={secondaryCta.link} variant="glass" size="lg" class="group">
+              {secondaryCta.text}
               <Icon name="mdi:arrow-right" class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" />
             </Button>
           )}
@@ -106,8 +106,6 @@ const descriptionColorClass = {
 </section>
 
 <style>
-  /* Removed gradient text animations in favor of solid black/grey text */
-  
   .floating-shape {
     animation: float 20s infinite;
   }

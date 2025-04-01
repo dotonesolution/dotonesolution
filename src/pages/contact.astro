@@ -1,19 +1,20 @@
 ---
-import ContactForm from '../components/ContactForm.astro';
-import ContactInfo from '../components/ContactInfo.astro';
-import Map from '../components/Map.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactDetails from '../data/ContactDetails.json'
-import Hero from '../components/Hero.astro';
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ContactInfo from "../components/ContactInfo.astro";
+import Map from "../components/Map.astro";
+import company from "../data/company.json";
+import pages from "../data/pages.json";
 ---
 
-<BaseLayout title="Contact Us">
-    <Hero section="contact"/>
-  <div class="container mx-auto px-4 py-8">
-    <div class="grid lg:grid-cols-2 gap-8 mb-8">
-      <ContactForm />
-      <ContactInfo />
+<BaseLayout title="Contact">
+    <Hero {...pages.sections.contact.hero} />
+    <div class="container mx-auto px-4 py-16">
+        <div class="grid md:grid-cols-2 gap-12">
+            <ContactForm />
+            <ContactInfo {...company.contact} />
+        </div>
     </div>
-    <Map address={ContactDetails['map-marker']} />
-  </div>
+    <Map />
 </BaseLayout>
