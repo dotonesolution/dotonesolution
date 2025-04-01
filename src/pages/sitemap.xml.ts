@@ -19,7 +19,7 @@ function generateSitemap(routes: Route[]) {
       .map(
         (route) => `
     <url>
-        <loc>https://dotonesolution.co.ke${route.url}</loc>
+        <loc>https://dotonesolutions.co.ke${route.url}</loc>
         ${route.lastmod ? `<lastmod>${route.lastmod}</lastmod>` : ""}
         ${
           route.changefreq ? `<changefreq>${route.changefreq}</changefreq>` : ""
