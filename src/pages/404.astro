@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { Icon } from 'astro-icon/components';
+
+const seoData = {
+  title: "Page Not Found",
+  description: "The page you're looking for doesn't exist or has been moved.",
+  type: "website"
+};
+---
+
+<BaseLayout {...seoData}>
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <!-- Background decorative elements -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-[radial-gradient(#1C75BB_0.5px,transparent_0.5px)] [background-size:24px_24px] opacity-[0.15]"></div>
+      <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-blue/10 rounded-full blur-[100px]"></div>
+      <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-dark-blue/10 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="container relative z-10 px-4 py-16">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="text-8xl font-bold text-primary-blue">404</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+          Page Not Found
+        </h1>
+        
+        <p class="text-lg text-gray-600 mb-8">
+          The page you're looking for doesn't exist or has been moved to a different location.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <Button 
+            href="/" 
+            variant="primary"
+            size="lg"
+            class="group w-full sm:w-auto"
+          >
+            <span class="flex items-center justify-center">
+              <Icon name="mdi:home" class="w-5 h-5 mr-2" />
+              Back to Home
+            </span>
+          </Button>
+          
+          <Button 
+            href="/contact" 
+            variant="outline"
+            size="lg"
+            class="group w-full sm:w-auto"
+          >
+            <span class="flex items-center justify-center">
+              <Icon name="mdi:message" class="w-5 h-5 mr-2" />
+              Contact Support
+            </span>
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated particles -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 8s infinite;
+  }
+
+  .particle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .particle:nth-child(2) {
+    top: 60%;
+    right: 20%;
+    animation-delay: 2s;
+  }
+
+  .particle:nth-child(3) {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+    }
+    50% {
+      transform: translateY(0) translateX(20px);
+    }
+    75% {
+      transform: translateY(20px) translateX(10px);
+    }
+  }
+</style>
