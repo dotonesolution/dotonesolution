@@ -32,7 +32,8 @@ export const POST: APIRoute = async ({ request }) => {
           <p style="color: #333333; margin-bottom: 20px;">Our team will carefully review your inquiry and respond as soon as possible, typically within 1-2 business days.</p>
           <div style="background-color: #f8f9fa; border-left: 4px solid #1C75BB; padding: 20px; margin: 30px 0;">
             <h3 style="color: #144C7F; margin-bottom: 15px;">For urgent matters:</h3>
-            <p style="color: #333333; margin-bottom: 10px;">📞 Phone: +254 716 862 762</p>
+            <p style="color: #333333; margin-bottom: 10px;">📞 Phone: +254 723 138 738</p>
+            <p style="color: #333333; margin-bottom: 10px;">📍 The Hub Karen, Dagoretti Rd, Nairobi, Kenya</p>
             <p style="color: #333333;">⏰ Hours: Monday - Friday, 9:00 AM - 4:00 PM</p>
           </div>
           <p style="color: #333333; margin-bottom: 10px;">Best regards,</p>
