@@ -56,15 +56,15 @@
       "link": "/services/creative-design"
     },
     {
-      "title": "Cloud Solutions",
-      "description": "Optimize your business with scalable cloud infrastructure and services designed for maximum efficiency.",
+      "title": "Hardware Sourcing & Installation",
+      "description": "Professional sourcing and installation of high-quality hardware solutions including PCs, Workstations, Starlink, and network devices.",
       "features": [
-        "Scalable cloud infrastructure",
-        "Cloud-native application development",
-        "Reliable and secure hosting solutions"
+        "Expert sourcing of PCs and Workstations",
+        "Starlink and network device installations",
+        "Reliable hardware setup and configuration"
       ],
-      "icon": "mdi:cloud",
-      "link": "/services/cloud-solutions"
+      "icon": "mdi:desktop-tower-monitor",
+      "link": "/services/hardware-solutions"
     }
   ],
   "categories": [
@@ -83,7 +83,8 @@
       "name": "Design & Training",
       "services": [
         "Creative Design & Prototyping",
-        "Digital Literacy Consultation"
+        "Digital Literacy Consultation",
+        "Hardware Sourcing & Installation"
       ]
     }
   ]
